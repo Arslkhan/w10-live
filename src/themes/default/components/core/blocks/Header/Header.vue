@@ -1,7 +1,6 @@
 <template>
   <div class="header">
-   
-    <top-promo />
+    <!--    <top-promo />-->
     <header
       class="fixed w-100 brdr-bottom-1 bg-cl-primary"
       :class="{ 'is-visible': navVisible }"
@@ -10,20 +9,16 @@
         <div class="row between-xs middle-sm" v-if="!isCheckoutPage || isThankYouPage">
           <div class="col-xs-2 visible-xs">
             <div>
-              <hamburger-icon class="p15 icon pointer" />
+              <hamburger-icon class="p15 icon pointer"/>
             </div>
           </div>
-          
-          <div class="col-md-3 end-xs col-xs-5 logo">     
-              <logo :imgsrc="'/assets/logo2.png'" class="visible-xs" />
-              <logo :imgsrc="'/assets/logo.png'" class="hidden-xs" />        
+
+          <div class="col-md-3 end-xs col-xs-5 logo">
+            <logo :imgsrc="'/assets/logo2.png'" class="visible-xs"/>
+            <logo :imgsrc="'/assets/logo.png'" class="hidden-xs"/>
           </div>
           <div class="col-md-7 hidden-xs center-xs headerlink">
-            
-
-           
-
-             <router-link
+            <router-link
               class="inline-flex weight-500 relative no-underline"
               :to="localizedRoute('/our-range')"
               exact
@@ -33,17 +28,17 @@
 
             <div class="spacer relative inline-flex"></div>
 
-             <router-link
+            <router-link
               class="inline-flex weight-500 relative no-underline"
               :to="localizedRoute('/innovation')"
               exact
             >
-            Innovation
+              Innovation
             </router-link>
 
-             <div class="spacer relative inline-flex"></div>
+            <div class="spacer relative inline-flex"></div>
 
-             <router-link
+            <router-link
               class="inline-flex weight-500 relative no-underline"
               :to="localizedRoute('/about-us')"
               exact
@@ -52,9 +47,7 @@
             </router-link>
 
             <div class="spacer relative inline-flex"></div>
-
-
-             <router-link
+            <router-link
               class="inline-flex weight-500 relative no-underline"
               :to="localizedRoute('/contact-us')"
               exact
@@ -64,18 +57,18 @@
 
           </div>
           <div class="col-xs-4 end-xs p0 m0 mt15 visible-xs">
-            <wishlist-icon class="icon pointer" />
-            <microcart-icon class="icon pointer" />
-            
+            <wishlist-icon class="icon pointer"/>
+            <microcart-icon class="icon pointer"/>
+
           </div>
 
           <div class="col-md-2 col-xs-2 hidden-xs end-xs navicon">
             <div class="inline-flex right-icons">
-              <search-icon class="p15 cl-white icon hidden pointer" />
-              <wishlist-icon class="p10 cl-white icon pointer" />
-              <compare-icon class="p15 cl-white icon hidden pointer" />
-              <microcart-icon class="p10 cl-white icon pointer" />
-              <account-icon class="p10 icon pointer" />
+              <search-icon class="p15 cl-white icon hidden pointer"/>
+              <wishlist-icon class="p10 cl-white icon pointer"/>
+              <compare-icon class="p15 cl-white icon hidden pointer"/>
+              <microcart-icon class="p10 cl-white icon pointer"/>
+              <account-icon class="p10 icon pointer"/>
             </div>
           </div>
         </div>
@@ -91,7 +84,7 @@
             </div>
           </div>
           <div class="col-xs-2 col-md-6 center-xs">
-            <logo width="auto" height="124px" />
+            <logo width="auto" height="124px"/>
           </div>
           <div class="col-xs-5 col-md-3 end-xs">
             <div>
@@ -107,7 +100,7 @@
         </div>
       </div>
     </header>
-    <div class="header-placeholder" />
+    <div class="header-placeholder"/>
   </div>
 </template>
 
@@ -122,6 +115,7 @@ import MicrocartIcon from 'theme/components/core/blocks/Header/MicrocartIcon'
 import SearchIcon from 'theme/components/core/blocks/Header/SearchIcon'
 import WishlistIcon from 'theme/components/core/blocks/Header/WishlistIcon'
 import TopPromo from 'theme/components/theme/blocks/Home/TopPromo'
+
 export default {
   name: 'Header',
   components: {
@@ -172,7 +166,7 @@ export default {
     }, 250)
   },
   methods: {
-    
+
     gotoAccount () {
       this.$bus.$emit('modal-toggle', 'modal-signup')
     },
@@ -195,53 +189,77 @@ export default {
 <style lang="scss" scoped>
 @import '~theme/css/variables/colors';
 @import '~theme/css/helpers/functions/color';
+
 $color-icon-hover: color(primary, $colors-background);
-.w10{    font-size: 26px;
-    line-height: 21px;
-    margin-right: 4px;}
+.w10 {
+  font-size: 26px;
+  line-height: 21px;
+  margin-right: 4px;
+}
+
 header {
   height: 150px;
   top: -201px;
   z-index: 3;
   transition: top 0.2s ease-in-out;
+
   &.is-visible {
-    top:28px;
+    top: 0;
   }
 }
-.logo{margin-top: 22px;}
-.headerlink{margin-top: 23px;}
-.navicon{margin-top: -54px;}
+
+.logo {
+  margin-top: 22px;
+}
+
+.headerlink {
+  margin-top: 23px;
+}
+
+.navicon {
+  margin-top: -54px;
+}
+
 .icon {
   opacity: 1;
+
   &:hover,
   &:focus {
     background-color: $color-icon-hover;
     opacity: 1;
   }
 }
+
 .right-icons {
   //for edge
   float: right;
 }
+
 .header-placeholder {
-  height: 179px;
+  height: 151px;
 }
+
 .links {
   text-decoration: underline;
 }
-.spacer{border-right: 1px solid #aa806e ; margin: 0 20px;}
 
+.spacer {
+  border-right: 1px solid #aa806e;
+  margin: 0 20px;
+}
 
 @media (max-width: 769px) {
-  .logo{margin-top: 5px;}
+  .logo {
+    margin-top: 5px;
+  }
 
   header {
-  height: 60px;
-  top: 24px !important;
+    height: 60px;
+    top: 24px !important;
   }
   .header-placeholder {
-  height: 85px;
-}
+    height: 85px;
+  }
   .row.middle-xs {
     margin: 0 -15px;
 
@@ -262,15 +280,34 @@ header {
 }
 </style>
 <style>
-header .material-icons{font-size: 30px !important; color:#fff}
-.headerlink a{text-transform: uppercase; color: #fff; font-size: 20px;border-bottom: 1px solid #000; border-top: 0px solid #000}
-.headerlink a:hover{border-bottom: 1px solid #aa806e; border-top: 0px solid #aa806e}
+header .material-icons {
+  font-size: 30px !important;
+  color: #fff
+}
+
+.headerlink a {
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 20px;
+  border-bottom: 1px solid #000;
+  border-top: 0px solid #000
+}
+
+.headerlink a:hover {
+  border-bottom: 1px solid #aa806e;
+  border-top: 0px solid #aa806e
+}
 
 @media (max-width: 1051px) {
-.headerlink a{ font-size: 16px}
+  .headerlink a {
+    font-size: 16px
+  }
 }
+
 @media (max-width: 892px) {
-.headerlink a{ font-size: 14px}
+  .headerlink a {
+    font-size: 14px
+  }
 }
 
 </style>

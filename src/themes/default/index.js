@@ -13,12 +13,12 @@ import { uiStore } from 'theme/store/ui'
 import { promotedStore } from 'theme/store/promoted-offers'
 import { StorageManager } from '@vue-storefront/core/lib/storage-manager'
 import VueCookie from 'vue-cookie'
-import VueGtag from 'vue-gtag-conversion'
+// import VueGtag from 'vue-gtag-conversion'
 
 once('__VUE_EXTEND_DROPPOINT_VPB__', () => {
   Vue.use(VueProgressBar)
   Vue.use(VueCookie)
-  Vue.use(VueGtag, { id: 'AW-612207016', enabled: true, debug: true })
+  // Vue.use(VueGtag, { id: 'AW-612207016', enabled: true, debug: true })
 })
 
 const themeEntry = App
