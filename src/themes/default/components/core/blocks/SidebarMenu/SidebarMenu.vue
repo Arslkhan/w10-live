@@ -65,12 +65,12 @@
               :parent-path="category.url_path"
             />
           </li>
-          
+
             <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
 
              <router-link
               class="px25 py20 cl-accent no-underline col-xs"
-              :to="localizedRoute('/our-range')"
+              :to="localizedRoute('/our-range.html')"
               exact
               @click.native="closeMenu"
             >
@@ -171,13 +171,13 @@ export default {
           name: i18n.t('My shipping details'),
           url: '/my-account/shipping-details'
         },
-        
+
         {
           id: 4,
           name: i18n.t('My orders'),
           url: '/my-account/orders'
         }
-        
+
       ],
       componentLoaded: false
     }

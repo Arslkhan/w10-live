@@ -7,7 +7,7 @@
             {{ title }}
           </h2>
           <h3><router-link
-                :to="localizedRoute('/our-range')"
+                :to="localizedRoute('/our-range.html')"
                 class="links"
               >
                 Check out the whole range here >
@@ -44,7 +44,7 @@
               </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </template>
@@ -173,9 +173,9 @@ $color-product-bg: color(secondary, $colors-background);
 .collection-product {
   .product-link {
     display: block;
-    padding: 0 15px 0px 15px;   
+    padding: 0 15px 0px 15px;
     /*min-height: 665px; */
-    
+
   }
 
 
