@@ -20,7 +20,7 @@
           <div class="col-md-7 hidden-xs center-xs headerlink">
             <router-link
               class="inline-flex weight-500 relative no-underline"
-              :to="localizedRoute('/our-range')"
+              :to="localizedRoute('/our-range.html')"
               exact
             >
               Our Range
