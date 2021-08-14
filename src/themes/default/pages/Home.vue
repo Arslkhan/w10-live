@@ -54,7 +54,7 @@
 
     <social-area />
 
-    <modal name="modal-welcome" :width="882">
+<!--    <modal name="modal-welcome" :width="882">
       <div class="row welcomepopup">
         <div class="col-sm-6 m0 p0 hidden-xs">
           <img v-lazy="'/assets/welcome.jpg'" width="100%" height="100%" />
@@ -79,7 +79,7 @@
         </div>
 
       </div>
-    </modal>
+    </modal>-->
 
   </div>
 </template>
