@@ -1,31 +1,31 @@
 <template>
   <div id="thank_you_external">
     <header class="thank-you-title">
-
       <div class="container center-xs middle-xs">
         <h1>
           {{ $t('Order confirmation') }}
         </h1>
-
-
       </div>
     </header>
     <div class="text-center center-xs flex middle-xs w-100">
-         <hr />
+      <hr/>
     </div>
     <div class="thank-you-content">
       <div class="container">
         <div class="row">
           <div class="col-md-12 pl20 pr20">
-            <h3 v-if="OnlineOnly" >
+            <h3 v-if="OnlineOnly">
               {{ $t('Your purchase') }}
             </h3>
-            <p v-html="this.$t('You have successfuly placed the order. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')" />
-            <p v-html="this.$t('E-mail us at <b>contactus@w10.world</b> with any questions, suggestions how we could improve products or shopping experience')"/>
+            <p
+              v-html="this.$t('You have successfuly placed the order. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')"/>
+            <p
+              v-html="this.$t('E-mail us at <b>contactus@w10.world</b> with any questions, suggestions how we could improve products or shopping experience')"/>
             <h3>
               {{ $t('Your Account') }}
             </h3>
-            <p v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data,</b> check <b>history of transactions</b>.</b>')"/>
+            <p
+              v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data,</b> check <b>history of transactions</b>.</b>')"/>
           </div>
 
         </div>
@@ -46,15 +46,17 @@ import { isServer } from '@vue-storefront/core/helpers';
 import rootStore from '@vue-storefront/core/store'
 import { getProduct } from '../router/beforeEach'
 import prepareCheckoutObject from '../../facebook-pixel/util/prepareCheckoutObject';
+
 export default {
   name: 'ExternalThankYouPage',
   mixins: [Composite, VueOfflineMixin],
-    components: {
+  components: {
     Breadcrumbs
   },
   data () {
     return {
-      dataLoaded: true
+      dataLoaded: true,
+      executedOnce: false
     }
   },
   // beforeMount () {
@@ -76,7 +78,7 @@ export default {
     }),
     platformTotal () {
       return this.$store.state.cart.platformTotals
-    },
+    }
     // ...mapGetters({
     //   ordersHistory: 'user/getOrdersHistory'
     // }),
@@ -90,18 +92,17 @@ export default {
     clearTheCart () {
       if (this.getNumberOfItemsInCart() > 0) {
         rootStore.dispatch('cart/clear', {}, { root: true })
-        rootStore.dispatch('cart/serverCreate', {guestCart: false}, {root: true})
+        rootStore.dispatch('cart/serverCreate', { guestCart: false }, { root: true })
       }
     },
     getNumberOfItemsInCart () {
       return this.$store.state.cart.cartItems.length
     },
     gtmTrackEvent (cart) {
-      //console.log(this.$store.state.cart.cartItems)
       this.$gtm.trackEvent({
         event: 'online.purchase',
         'ecommerce': {
-          'currencyCode' : 'GBP',
+          'currencyCode': 'GBP',
           'purchase': {
             'actionField': {
               'id': this.$route.params.orderId ? this.$route.params.orderId : '',
@@ -123,15 +124,50 @@ export default {
         'value': cart && cart.base_grand_total ? cart.base_grand_total : '',
         'currency': 'GBP',
         'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
-        });
+      });
 
       fbq('track', 'Purchase', prepareCheckoutObject(this.$store, true));
       this.clearTheCart();
+    },
+    gTagConversion ({ cart }) {
+      if (
+        document.documentElement.innerHTML.search(
+          'AW-612207016/P1oMCPCl0-sBEKiT9qMC'
+        ) !== -1
+      ) {
+        this.executedOnce = true
+        return false
+      }
+      const gtagScript = document.createElement('script')
+      // If No Order Data was found, then just return false
+      // console.log('orderDatadd', data, data.result.orderData);
+      if (!cart) {
+        console.log('No Cart Data Found');
+        return false
+      }
+      let transactionId = this.$route.params.orderId;
+      // let orderData = data.result.orderData
+      // let totalProductsQty = this.countProducts(orderData.order.products)
+      // if (!orderData.order) {
+      //   return false
+      // }
+      gtagScript.innerHTML =
+        'gtag(\'event\', \'conversion\', {\n' +
+        '      \'send_to\': \'AW-612207016/P1oMCPCl0-sBEKiT9qMC\',\n' +
+        '      \'value\': ' + (cart && cart.base_grand_total ? cart.base_grand_total : '') + ',\n' +
+        '      \'currency\': \'GBP\',\n' +
+        '      \'transaction_id\': ' +
+        transactionId +
+        ' \n' +
+        '  });'
+      document.body.appendChild(gtagScript)
     }
   },
   watch: {
     platformTotal (n, o) {
+      this.gTagConversion(n);
       if (this.dataLoaded) {
+        console.log('data have been loaded');
         this.gtmTrackEvent(n);
         this.dataLoaded = false;
       }
@@ -140,30 +176,64 @@ export default {
   metaInfo () {
     return {
       title: this.$route.meta.title,
-      meta: [{vmid: 'description', description: this.$route.meta.description}]
+      meta: [{ vmid: 'description', description: this.$route.meta.description }]
     }
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>
-  #thank_you_external ~ .notifications {
-    display: none;
+#thank_you_external ~ .notifications {
+  display: none;
+}
+
+h1 {
+  font-size: 44px;
+  font-weight: 100;
+  color: black;
+  margin: 40px 0 0px 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: 300;
+  color: black;
+  margin: 0px 0 0px 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+hr {
+  margin: 50px 0;
+  padding: 0;
+  width: 100px;
+  border: 0;
+  border-top: 1px solid #98694b;
+}
+
+.thank-you-improvment {
+  padding: 20px 40px 40px 40px
+}
+
+.thank-you-content {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  hr {
+    margin: 30px 0 0 0;
   }
-  h1{font-size: 44px;font-weight: 100;color: black; margin: 40px 0 0px 0; padding: 0; text-transform: uppercase;}
-  h3{font-size: 25px;font-weight: 300;color: black; margin: 0px 0 0px 0; padding: 0; text-transform: uppercase;}
-  hr{margin: 50px 0; padding: 0; width: 100px;border: 0; border-top:1px solid #98694b;}
-  .thank-you-improvment{padding:20px 40px 40px 40px}
-  .thank-you-content{margin-bottom: 40px;}
-  @media (max-width: 767px) {
-    hr{margin: 30px 0 0 0;}
-     .thank-you-content{margin-top: 0px;}
-h1{
+  .thank-you-content {
+    margin-top: 0px;
+  }
+  h1 {
     font-size: 32px;
     font-weight: 100;
     color: black;
     margin: 40px 0 0px 0;
     padding: 0;
-}
+  }
 }
 
 </style>
