@@ -59,6 +59,16 @@ export default {
       executedOnce: false
     }
   },
+  mounted () {
+    this.$gtm.trackEvent({
+      event: 'conversion',
+      'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
+      'value': 0,
+      'currency': 'GBP',
+      'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
+    });
+    // this.gTagConversion()
+  },
   // beforeMount () {
   //   this.$bus.$on('application-after-loaded', (payload) => {
   //     if (document.getElementById('thank_you_external') != null) {
@@ -72,6 +82,10 @@ export default {
   //   })
   // },
   computed: {
+    ...mapGetters({
+      productsInCart: 'cart/getCartItems',
+      totals: 'cart/getTotals'
+    }),
     ...mapState({
       lastOrderConfirmation: state => get(state, 'order.last_order_confirmation.confirmation') || {},
       checkoutPersonalEmailAddress: state => state.checkout.personalDetails.emailAddress
@@ -99,6 +113,7 @@ export default {
       return this.$store.state.cart.cartItems.length
     },
     gtmTrackEvent (cart) {
+      console.log('shouldIBeWorking');
       this.$gtm.trackEvent({
         event: 'online.purchase',
         'ecommerce': {
@@ -129,7 +144,9 @@ export default {
       fbq('track', 'Purchase', prepareCheckoutObject(this.$store, true));
       this.clearTheCart();
     },
-    gTagConversion ({ cart }) {
+    gTagConversion (cart) {
+      console.log('lastOrderConfirmation', this.lastOrderConfirmation);
+      console.log('gTagConversionCalled', this.$store.state.cart.cartItems.length);
       if (
         document.documentElement.innerHTML.search(
           'AW-612207016/P1oMCPCl0-sBEKiT9qMC'
@@ -138,23 +155,20 @@ export default {
         this.executedOnce = true
         return false
       }
-      const gtagScript = document.createElement('script')
+      let gtagScript = document.createElement('script')
       // If No Order Data was found, then just return false
       // console.log('orderDatadd', data, data.result.orderData);
-      if (!cart) {
-        console.log('No Cart Data Found');
-        return false
-      }
       let transactionId = this.$route.params.orderId;
+      console.log('transactionId', transactionId);
       // let orderData = data.result.orderData
       // let totalProductsQty = this.countProducts(orderData.order.products)
-      // if (!orderData.order) {
-      //   return false
-      // }
+      if (gtag && typeof gtag === 'function') {
+        return false
+      }
       gtagScript.innerHTML =
         'gtag(\'event\', \'conversion\', {\n' +
         '      \'send_to\': \'AW-612207016/P1oMCPCl0-sBEKiT9qMC\',\n' +
-        '      \'value\': ' + (cart && cart.base_grand_total ? cart.base_grand_total : '') + ',\n' +
+        '      \'value\': ' + 0 + ',\n' +
         '      \'currency\': \'GBP\',\n' +
         '      \'transaction_id\': ' +
         transactionId +
@@ -165,9 +179,8 @@ export default {
   },
   watch: {
     platformTotal (n, o) {
-      this.gTagConversion(n);
+      // this.gTagConversion({ cart: n });
       if (this.dataLoaded) {
-        console.log('data have been loaded');
         this.gtmTrackEvent(n);
         this.dataLoaded = false;
       }
@@ -176,7 +189,14 @@ export default {
   metaInfo () {
     return {
       title: this.$route.meta.title,
-      meta: [{ vmid: 'description', description: this.$route.meta.description }]
+      meta: [{ vmid: 'description', description: this.$route.meta.description }],
+      script: [
+        {
+          id: 'adwords-conversion',
+          src: 'https://www.googletagmanager.com/gtag/js?id=AW-612207016',
+          async: true
+        }
+      ]
     }
   }
 }
