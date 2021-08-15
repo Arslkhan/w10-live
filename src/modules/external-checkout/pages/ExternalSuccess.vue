@@ -97,7 +97,7 @@ export default {
       return this.$store.state.cart.cartItems.length
     },
     gtmTrackEvent (cart) {
-      //console.log(this.$store.state.cart.cartItems)
+      console.log('gtmTrackEvent', this.$store.state.cart.cartItems)
       this.$gtm.trackEvent({
         event: 'online.purchase',
         'ecommerce': {
@@ -131,6 +131,7 @@ export default {
   },
   watch: {
     platformTotal (n, o) {
+      console.log('dataLoaded', this.dataLoaded)
       if (this.dataLoaded) {
         this.gtmTrackEvent(n);
         this.dataLoaded = false;
