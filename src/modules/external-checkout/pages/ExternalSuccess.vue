@@ -1,13 +1,13 @@
 <template>
   <div id="thank_you_external">
     <header class="thank-you-title">
-     
+
       <div class="container center-xs middle-xs">
         <h1>
           {{ $t('Order confirmation') }}
         </h1>
-       
-      
+
+
       </div>
     </header>
     <div class="text-center center-xs flex middle-xs w-100">
@@ -20,14 +20,14 @@
             <h3 v-if="OnlineOnly" >
               {{ $t('Your purchase') }}
             </h3>
-            <p v-html="this.$t('You have successfuly placed the order. You can check status of your order by using our <b>delivery status</b> feature. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')" />
+            <p v-html="this.$t('You have successfuly placed the order. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')" />
             <p v-html="this.$t('E-mail us at <b>contactus@w10.world</b> with any questions, suggestions how we could improve products or shopping experience')"/>
             <h3>
               {{ $t('Your Account') }}
             </h3>
             <p v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data,</b> check <b>history of transactions</b>.</b>')"/>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -112,16 +112,16 @@ export default {
               'coupon': ''
             },
             'products': this.$store.state.cart.cartItems.map(product => getProduct(product))
-            
+
           }
         }
       });
-      
+
       this.$gtm.trackEvent({
         event: 'conversion',
-        'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC', 
+        'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
         'value': cart && cart.base_grand_total ? cart.base_grand_total : '',
-        'currency': 'GBP', 
+        'currency': 'GBP',
         'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
         });
 
