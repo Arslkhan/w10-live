@@ -118,6 +118,13 @@
         />
         <base-checkbox
           class="mb10"
+          id="marketing"
+          v-model="marketingPermission"
+        >
+          Marketing Permission
+        </base-checkbox>
+        <base-checkbox
+          class="mb10"
           id="terms"
           v-model="conditions"
           @blur="$v.conditions.$reset()"
