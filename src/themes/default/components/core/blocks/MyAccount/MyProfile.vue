@@ -73,12 +73,11 @@
           }
         ]"
       />
-
       <base-checkbox
         class="col-xs-12 col-md-12 mb10"
         id="marketing"
         v-model="marketingPermissionData"
-        @click="marketingPermissionUpdate" 
+        @click="marketingPermissionUpdate"
       >
         Marketing Permission
       </base-checkbox>
@@ -383,7 +382,7 @@ export default {
   },
   data () {
     return {
-      marketingPermissionData: 0
+      marketingPermissionData: false
     }
   },
   mounted () {
@@ -416,7 +415,16 @@ export default {
   },
   methods: {
     async marketingPermissionUpdate () {
-      console.log('marketingPermissionUpdate q', !this.marketingPermissionData)
+      this.marketingPermissionData = !this.marketingPermissionData
+      console.log('marketingPermissionUpdate qq', typeof this.marketingPermissionData, this.marketingPermissionData)
+      if (this.marketingPermissionData === true) {
+        this.marketingPermissionData = 1;
+      } else {
+        this.marketingPermissionData = 0;
+      }
+      console.log('before send marketingPermissionUpdate qq', this.marketingPermissionData)
+      let sendObj = { allow: this.marketingPermissionData, customerId: this.currentUser.id }
+      console.log('sendObj sendObj', sendObj)
       try {
         let marketing_URL = config.updateMarketingDataUrl
         const response = await fetch(
@@ -428,11 +436,14 @@ export default {
               Accept: 'application/json, text/plain, */*',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({allow: 1, customerId: 33})
+            body: JSON.stringify(sendObj)
           }
         );
         const jsonRes = await response.json();
         console.log('jsonResjsonResjsonRes', jsonRes);
+        if (jsonRes && jsonRes.code === 200) {
+          // this.marketingPermissionData = !this.marketingPermissionData
+        }
       } catch (error) {
         console.log(error);
       }
