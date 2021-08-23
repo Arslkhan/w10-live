@@ -40,6 +40,16 @@
 
             <router-link
               class="inline-flex weight-500 relative no-underline"
+              :to="localizedRoute('/FAQ')"
+              exact
+            >
+              FAQ
+            </router-link>
+
+            <div class="spacer relative inline-flex"></div>
+
+            <router-link
+              class="inline-flex weight-500 relative no-underline"
               :to="localizedRoute('/about-us')"
               exact
             >
