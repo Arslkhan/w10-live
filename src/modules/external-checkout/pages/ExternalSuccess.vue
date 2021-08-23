@@ -25,7 +25,7 @@
             <h3>
               {{ $t('Your Account') }}
             </h3>
-            <p v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data,</b> check <b>history of transactions</b>.</b>')"/>
+            <p v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data</b> and check <b>history of transactions</b>.</b>')"/>
           </div>
 
         </div>
