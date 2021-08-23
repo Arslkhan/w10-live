@@ -80,7 +80,6 @@
             <div class="inline-flex right-icons">
               <search-icon class="p15 cl-white icon hidden pointer" />
               <wishlist-icon class="p10 cl-white icon pointer" />
-              <compare-icon class="p15 cl-white icon hidden pointer" />
               <microcart-icon class="p10 cl-white icon pointer" />
               <account-icon class="p10 icon pointer" />
             </div>
@@ -226,7 +225,7 @@ header {
     flex-basis: 3%;
     max-width: 3%;
   }
-  @media (max-width: 768px) { 
+  @media (max-width: 768px) {
     display: none;
   }
   .costa-logo {
