@@ -55,4 +55,9 @@ export default {
     @media (max-width: 320px) {
   .minipadding{padding: 0; margin: 0;}
     }
+    @media (max-width:865px) {
+      .minipadding {
+        padding-right: 0;
+      }
+    }
 </style>
