@@ -279,7 +279,7 @@ table {
             text-decoration: underline;
             font-family: 'Raleway';
             padding: 0 0 0 10px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
         }
     }
