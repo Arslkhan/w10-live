@@ -51,6 +51,7 @@ import OfflineBadge from 'theme/components/core/OfflineBadge.vue'
 import { isServer } from '@vue-storefront/core/helpers'
 import Head from 'theme/head'
 import config from 'config'
+import Login from '@vue-storefront/core/compatibility/components/blocks/Auth/Login'
 
 const SidebarMenu = () => import(/* webpackPreload: true */ /* webpackChunkName: "vsf-sidebar-menu" */ 'theme/components/core/blocks/SidebarMenu/SidebarMenu.vue')
 const Microcart = () => import(/* webpackPreload: true */ /* webpackChunkName: "vsf-microcart" */ 'theme/components/core/blocks/Microcart/Microcart.vue')
@@ -59,6 +60,7 @@ const SearchPanel = () => import(/* webpackChunkName: "vsf-search-panel" */ 'the
 const OrderConfirmation = () => import(/* webpackChunkName: "vsf-order-confirmation" */ 'theme/components/core/blocks/Checkout/OrderConfirmation.vue')
 
 export default {
+  mixins: [Login],
   data () {
     return {
       loadOrderConfirmation: false,
@@ -95,6 +97,16 @@ export default {
   },
   serverPrefetch () {
     return this.fetchMenuData()
+  },
+  mounted () {
+    console.log('forForgetPasswrod', this.$route.query.id === 'forget')
+    if (this.$route.query.id === 'forget') {
+      console.log('forForgetPasswrod inside', this.$route.query && this.$route.query.id === 'forget')
+      this.$bus.$emit('modal-show', 'modal-signup')
+      this.callForgotPassword()
+      this.$store.commit('ui/setAuthElem', 'forgot-pass')
+      console.log('forForgetPasswrod last', this.$route.query && this.$route.query.id === 'forget')
+    }
   },
   beforeMount () {
     // Progress bar on top of the page
