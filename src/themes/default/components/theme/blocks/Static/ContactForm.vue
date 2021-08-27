@@ -271,13 +271,13 @@ $color-puerto-rico: color(puerto-rico);
         padding-bottom: 120px;
     }
     h2 {
-        font-size: 28px;
+        font-size: 24px;
         position: relative;
         text-align: center;
-        font-weight: 300;
+        font-weight: 400;
         margin-bottom: 60px;
         @media (max-width: 767px) {
-            font-size: 20px;
+            font-size: 19px;
             padding: 0 30px;
         }
        

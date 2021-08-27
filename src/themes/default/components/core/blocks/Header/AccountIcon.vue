@@ -10,7 +10,7 @@
   >
     <button
       type="button"
-      class="bg-cl-transparent cl-white brdr-none p0"
+      class="bg-cl-transparent cl-white brdr-none p0 accountbutton"
     >
       <img v-lazy="'/assets/accounticon.png'" height="28px" />
     </button>
@@ -80,5 +80,10 @@ $color-icon-hover: color(secondary, $colors-background);
     }
   }
 
+}
+@media (max-width:865px) {
+  .accountbutton {
+    padding-right: 0;
+  }
 }
 </style>

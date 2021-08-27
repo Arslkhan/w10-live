@@ -10,11 +10,13 @@
        
       </div>
     </header>
-
+    <div class="container"> 
+      <p class="Return-Policy"> RETURNS? PLEASE REFER TO OUR <a style="font-weight: 800; text-decoration: underline;" href="/i/returns">RETURNS POLICY PAGE.</a></p>
+    </div>
      <contact-form />
     
 
-    <social-area />
+    <!-- <social-area /> -->
   </div>
 </template>
 
@@ -39,8 +41,22 @@ export default {
 }
 </script>
 
-
-<style scoped>
+<style scoped lang="scss">
+.Return-Policy{
+  font-family: 'Raleway';
+  font-size:26px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 400;
+  padding:60px 0 40px 0;
+  @media screen and (max-width:767px) {
+     padding:42px 0 25px 0;
+     font-size: 20px !important;
+  }
+  a{
+    color:#98694B;
+  }
+}
 .headerimage{background-size: cover;height: 784px;}
 @media (max-width: 1050px) {
   .headerimage{background-position-x: center;}

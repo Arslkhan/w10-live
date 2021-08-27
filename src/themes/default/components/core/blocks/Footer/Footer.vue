@@ -6,14 +6,25 @@
         <div class="row m0 center-xs between-md">
           <div class="col-xs-12 mb20"><img v-lazy="'/assets/logo2.png'" height="124px" alt="W10" /></div>
           <div class="col-xs-12"><img v-lazy="'/assets/cred.png'" height="44px" alt="BPMA Accedited" /> <img v-lazy="'/assets/british-jewellery-and-giftware-international.png'" height="82px" alt="british jewellery and giftware international" /></div>
-          <div class="col-xs-12"><p><a href="tel:0800 012 6406"><b>0800 012 6406</b></a><br/>
-            <a href="mailto:contactus@w10.world" class="text-underline">contactus@w10.world</a></p></div>
+          <!-- <div class="col-xs-12"><p><a href="tel:0800 012 6406"><b>0800 012 6406</b></a><br/>
+            <a href="mailto:contactus@w10.world" class="text-underline">contactus@w10.world</a></p></div> -->
 
-          <div class="col-xs-12">
+          <div class="col-xs-12 footer-menu">
+            <a
+              href="tel:0800 012 6406"
+            >
+              {{ $t('0800 012 6406') }}
+            </a>
+            <span>|</span>
+            <a
+              href="mailto:contactus@w10.world"
+            >
+              {{ $t('CONTACTUS@W10.WORLD') }}
+            </a>
+            <span>|</span>
             <router-link
-              class="mr10"
-              to="/i/terms-and-conditions-dev"
-              exact
+                         to="/i/terms-and-conditions-dev"
+                         exact
             >
               {{ $t('TERMS & CONDITIONS ') }}
             </router-link>
@@ -91,4 +102,11 @@ a:hover{color: #98694b; text-decoration: none !important; background-color: blac
 p,a{color: #98694b; font-size: 20px; text-transform: uppercase;}
 .small{font-size: 16px;}
 .text-underline{text-decoration: underline;}
+.footer-menu { span {color: #98694B;
+    padding: 0 13px;}}
+    @media (max-width: 1199px) {
+      .footer-menu {
+        line-height: 1.7;
+      }
+    }
 </style>
