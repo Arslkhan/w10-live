@@ -10,17 +10,18 @@
             <a href="mailto:contactus@w10.world" class="text-underline">contactus@w10.world</a></p></div>
 
           <div class="col-xs-12">
-            <router-link class="mr10"
-                         to="/i/terms-and-conditions"
-                         exact
+            <router-link
+              class="mr10"
+              to="/i/terms-and-conditions-dev"
+              exact
             >
               {{ $t('TERMS & CONDITIONS ') }}
             </router-link>
 
-            <router-link class="mr10"
-
-                         to="/i/privacy-policy"
-                         exact
+            <router-link
+              class="mr10"
+              to="/i/privacy-policy"
+              exact
             >
               {{ $t('PRIVACY POLICY') }}
             </router-link>
