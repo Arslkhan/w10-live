@@ -23,7 +23,7 @@
             </a>
             <span>|</span>
             <router-link
-                         to="/i/terms-and-conditions-dev"
+                         to="/i/terms-and-conditions"
                          exact
             >
               {{ $t('TERMS & CONDITIONS ') }}
