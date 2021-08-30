@@ -57,7 +57,8 @@ export default {
   data () {
     return {
       dataLoaded: true,
-      executedOnce: false
+      executedOnce: false,
+      subTotal: 0
     }
   },
   async mounted () {
@@ -81,18 +82,17 @@ export default {
       );
       const jsonRes = await response.json();
       console.log('order details response', jsonRes);
-      console.log('response2', jsonRes.result.message.order.subtotal);
-      // console.log('response1', jsonRes.order.subtotal);
-      if (jsonRes && jsonRes.code === 200) {
-        // this.marketingPermissionData = !this.marketingPermissionData
+      if (jsonRes.result.message.order.subtotal) {
+        this.subTotal = jsonRes.result.message.order.subtotal
       }
+      console.log('response2', this.subTotal, jsonRes.result.message.order.subtotal);
     } catch (error) {
       console.log(error);
     }
     this.$gtm.trackEvent({
       event: 'conversion',
       'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
-      'value': 0,
+      'value': this.subTotal,
       'currency': 'GBP',
       'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
     });
