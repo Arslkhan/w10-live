@@ -62,10 +62,7 @@ export default {
     }
   },
   async mounted () {
-    // await this.$store.dispatch('orderDetails/getOrderDetails', 2000000016).then(async res => {
-    //   console.log('order-details response', res)
-    // })
-    let sendObj = { orderId: 2000000016 }
+    let sendObj = { orderId: this.$route.params.orderId }
     try {
       let orderDetail_URL = config.orderDetails
       const response = await fetch(
