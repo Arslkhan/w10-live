@@ -46,6 +46,7 @@ import { isServer } from '@vue-storefront/core/helpers';
 import rootStore from '@vue-storefront/core/store'
 import { getProduct } from '../router/beforeEach'
 import prepareCheckoutObject from '../../facebook-pixel/util/prepareCheckoutObject';
+import fetch from "isomorphic-fetch";
 
 export default {
   name: 'ExternalThankYouPage',
@@ -60,9 +61,32 @@ export default {
     }
   },
   async mounted () {
-    await this.$store.dispatch('orderDetails/getOrderDetails', 2000000016).then(async res => {
-      console.log('order-details response', res)
-    })
+    // await this.$store.dispatch('orderDetails/getOrderDetails', 2000000016).then(async res => {
+    //   console.log('order-details response', res)
+    // })
+    let sendObj = { orderId: 2000000016 }
+    try {
+      let orderDetail_URL = config.orderDetails
+      const response = await fetch(
+        `${orderDetail_URL}`,
+        {
+          method: 'post',
+          mode: 'cors',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(sendObj)
+        }
+      );
+      const jsonRes = await response.json();
+      console.log('order details response', jsonRes);
+      if (jsonRes && jsonRes.code === 200) {
+        // this.marketingPermissionData = !this.marketingPermissionData
+      }
+    } catch (error) {
+      console.log(error);
+    }
     this.$gtm.trackEvent({
       event: 'conversion',
       'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
