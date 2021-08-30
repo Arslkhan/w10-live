@@ -59,7 +59,10 @@ export default {
       executedOnce: false
     }
   },
-  mounted () {
+  async mounted () {
+    await this.$store.dispatch('order-details/endpoint', 2000000016).then(async res => {
+      console.log('order-details response', res)
+    })
     this.$gtm.trackEvent({
       event: 'conversion',
       'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
