@@ -21,6 +21,7 @@ import { InitialResourcesModule } from '@vue-storefront/core/modules/initial-res
 // import { DeviceModule } from './device/index';
 import { registerModule } from '@vue-storefront/core/lib/modules'
 import { ExternalCheckout } from './external-checkout'
+import { orderDetail } from './order-details'
 
 // TODO:distributed across proper pages BEFORE 1.11
 export function registerClientModules () {
@@ -44,6 +45,7 @@ export function registerClientModules () {
   registerModule(InitialResourcesModule)
   // registerModule(DeviceModule)
   registerModule(ExternalCheckout)
+  registerModule(orderDetail)
 }
 
 // Deprecated API, will be removed in 2.0

@@ -60,7 +60,7 @@ export default {
     }
   },
   async mounted () {
-    await this.$store.dispatch('order-details/endpoint', 2000000016).then(async res => {
+    await this.$store.dispatch('orderDetails/getOrderDetails', 2000000016).then(async res => {
       console.log('order-details response', res)
     })
     this.$gtm.trackEvent({
