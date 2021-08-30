@@ -81,8 +81,8 @@ export default {
       );
       const jsonRes = await response.json();
       console.log('order details response', jsonRes);
-      console.log('response1', jsonRes.order.subtotal);
       console.log('response2', jsonRes.result.message.order.subtotal);
+      // console.log('response1', jsonRes.order.subtotal);
       if (jsonRes && jsonRes.code === 200) {
         // this.marketingPermissionData = !this.marketingPermissionData
       }
