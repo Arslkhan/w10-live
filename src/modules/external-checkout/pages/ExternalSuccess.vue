@@ -46,6 +46,7 @@ import { isServer } from '@vue-storefront/core/helpers';
 import rootStore from '@vue-storefront/core/store'
 import { getProduct } from '../router/beforeEach'
 import prepareCheckoutObject from '../../facebook-pixel/util/prepareCheckoutObject';
+import fetch from "isomorphic-fetch";
 
 export default {
   name: 'ExternalThankYouPage',
@@ -56,14 +57,39 @@ export default {
   data () {
     return {
       dataLoaded: true,
-      executedOnce: false
+      executedOnce: false,
+      subTotal: 0
     }
   },
-  mounted () {
+  async mounted () {
+    let sendObj = { orderId: this.$route.params.orderId }
+    try {
+      let orderDetail_URL = config.orderDetails
+      const response = await fetch(
+        `${orderDetail_URL}`,
+        {
+          method: 'post',
+          mode: 'cors',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(sendObj)
+        }
+      );
+      const jsonRes = await response.json();
+      console.log('order details response', jsonRes);
+      if (jsonRes.result.message.order.subtotal) {
+        this.subTotal = jsonRes.result.message.order.subtotal
+      }
+      console.log('response2', this.subTotal, jsonRes.result.message.order.subtotal);
+    } catch (error) {
+      console.log(error);
+    }
     this.$gtm.trackEvent({
       event: 'conversion',
       'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
-      'value': 0,
+      'value': this.subTotal,
       'currency': 'GBP',
       'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
     });
