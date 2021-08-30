@@ -18,14 +18,14 @@
               {{ $t('Your purchase') }}
             </h3>
             <p
-              v-html="this.$t('You have successfuly placed the order. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')"/>
+              v-html="this.$t('You have successfully placed the order. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')"/>
             <p
-              v-html="this.$t('E-mail us at <b>contactus@w10.world</b> with any questions, suggestions how we could improve products or shopping experience')"/>
+              v-html="this.$t('E-mail us at <b>contactus@w10.world</b> with any questions or suggestions on how we could improve products or shopping experience')"/>
             <h3>
               {{ $t('Your Account') }}
             </h3>
             <p
-              v-html="this.$t('You can log to your account using e-mail and password defined earlier. On your account you can <b>edit your profile data,</b> check <b>history of transactions</b>.</b>')"/>
+              v-html="this.$t('You can log into your account using the e-mail and password setup earlier. On your account you can <b>edit your profile data</b> and check <b>history of transactions</b>.</b>')"/>
           </div>
 
         </div>
@@ -116,7 +116,7 @@ export default {
       return this.$store.state.cart.cartItems.length
     },
     gtmTrackEvent (cart) {
-      console.log('shouldIBeWorking');
+      console.log('gtmTrackEvent', this.$store.state.cart.cartItems)
       this.$gtm.trackEvent({
         event: 'online.purchase',
         'ecommerce': {
@@ -182,7 +182,7 @@ export default {
   },
   watch: {
     platformTotal (n, o) {
-      // this.gTagConversion({ cart: n });
+      console.log('dataLoaded', this.dataLoaded)
       if (this.dataLoaded) {
         this.gtmTrackEvent(n);
         this.dataLoaded = false;
