@@ -18,7 +18,7 @@
               {{ $t('Your purchase') }}
             </h3>
             <p
-              v-html="this.$t('You have successfully placed the order. You will receive an order confirmation e-mail with details of your order and a link to track its progress.')"/>
+              v-html="this.$t('You will receive an order confirmation email with details of your order and once dispatched a link to track your parcel’s progress.')"/>
             <p
               v-html="this.$t('E-mail us at <b>contactus@w10.world</b> with any questions or suggestions on how we could improve products or shopping experience')"/>
             <h3>
