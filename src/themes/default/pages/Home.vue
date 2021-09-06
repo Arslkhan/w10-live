@@ -53,34 +53,6 @@
     <world-first />
 
     <social-area />
-
-<!--    <modal name="modal-welcome" :width="882">
-      <div class="row welcomepopup">
-        <div class="col-sm-6 m0 p0 hidden-xs">
-          <img v-lazy="'/assets/welcome.jpg'" width="100%" height="100%" />
-        </div>
-        <div class="col-sm-6 flex center-sm middle-sm mobilepadding">
-          <div>
-            <h3>
-              Welcome to W10 Collection.
-              <i slot="close" class="modal-close material-icons" @click="closeWelcome">close</i>
-            </h3>
-            <hr />
-            <div class="row">
-              <div class="col-md-12">
-                <p>As an introductory offer we would like to give you <b>10% off</b> your first order online.</p>
-                <p>This will automatically be added to your cart.</p>
-                <p>Happy shopping!</p>
-                <p class="small">For details on how we use your data, view our privacy policy.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </modal>-->
-
   </div>
 </template>
 
