@@ -28,9 +28,9 @@ export default {
   mixins: [filterMixin],
   methods: {
     backgroundColor (label) {
-      label.replace(/\s/g, '');
-      label.replace('&', '');
-      return '/assets/material/' + label + '.jpg'
+      let leb1 = label.replace(/\s/g, '');
+      let leb2 = leb1.replace('&', '');
+      return '/assets/material/' + leb2 + '.jpg'
     }
   }
 }
