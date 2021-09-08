@@ -27,8 +27,10 @@ export default {
   },
   mixins: [filterMixin],
   methods: {
-    backgroundColor(label) {
-        return '/assets/material/' + label + '.jpg'
+    backgroundColor (label) {
+      label.replace(/\s/g, '');
+      label.replace('&', '');
+      return '/assets/material/' + label + '.jpg'
     }
   }
 }
