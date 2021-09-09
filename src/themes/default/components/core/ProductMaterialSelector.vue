@@ -1,5 +1,5 @@
 <template>
-  <div @mouseover="toggleTooltip()" @mouseout="removeTooltip">
+  <div @mouseover="toggleTooltip(variant.label)" @mouseout="removeTooltip">
     <button v-if="parseInt(variant.value) === current"
             :class="['mr10 mb5 bg-cl-transparent brdr-1 brdr-cl-transparent :brdr-cl-bg-primary relative inline-flex pointer color', (selected > 0 && selected === parseInt(variant.value)) ? 'active' : '']"
             @click="$emit('change', variant)"
@@ -11,7 +11,7 @@
       />
 <!--      <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>-->
     </button>
-    <span class="detail grade-tooltip" ref="gradeBox"></span>
+    <span class="detail grade-tooltip" ref="gradeBox">{{ textToDisplay }}</span>
   </div>
 </template>
 
@@ -28,9 +28,15 @@ export default {
       required: false
     }
   },
+  data () {
+    return {
+      textToDisplay: ''
+    }
+  },
   mixins: [filterMixin],
   methods: {
-    toggleTooltip () {
+    toggleTooltip (text) {
+      this.textToDisplay = text
       this.$refs.gradeBox.classList.toggle('show-tooltip');
     },
     removeTooltip () {
