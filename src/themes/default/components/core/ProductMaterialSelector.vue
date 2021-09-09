@@ -37,13 +37,13 @@ export default {
   methods: {
     toggleTooltip (text) {
       this.textToDisplay = text
-      this.$refs.gradeBox.classList.toggle('show-tooltip');
+      // this.$refs.gradeBox.classList.toggle('show-tooltip');
     },
     removeTooltip () {
       this.textToDisplay = ''
-      if (this.$refs.gradeBox && this.$refs.gradeBox.classList.contains('show-tooltip')) {
-        this.$refs.gradeBox.classList.remove('show-tooltip');
-      }
+      // if (this.$refs.gradeBox && this.$refs.gradeBox.classList.contains('show-tooltip')) {
+      //   this.$refs.gradeBox.classList.remove('show-tooltip');
+      // }
     },
     backgroundColor (label) {
       let leb1 = label.replace(/\s/g, '');
