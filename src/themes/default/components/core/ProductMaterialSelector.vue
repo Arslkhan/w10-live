@@ -11,17 +11,7 @@
       />
       <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>
     </button>
-    <span class="detail grade-tooltip" ref="gradeBox">
-      This is test text
-<!--      <svg-->
-<!--        xmlns="http://www.w3.org/2000/svg"-->
-<!--        width="19.268"-->
-<!--        height="18.68"-->
-<!--        viewBox="0 0 19.268 18.68"-->
-<!--      >-->
-<!--        <g id="Group_82" data-name="Group 82" transform="translate(-1434.82 -1341.835)"></g>-->
-<!--      </svg>-->
-    </span>
+    <span class="detail grade-tooltip" ref="gradeBox"></span>
   </div>
 </template>
 
