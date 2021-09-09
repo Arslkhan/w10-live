@@ -1,6 +1,6 @@
 <template>
-  <div @mouseover="toggleTooltip(variant.label)" @mouseout="removeTooltip">
-    <button v-if="parseInt(variant.value) === current"
+  <div>
+    <button @mouseover="toggleTooltip(variant.label)" @mouseout="removeTooltip" v-if="parseInt(variant.value) === current"
             :class="['mr10 mb5 bg-cl-transparent brdr-1 brdr-cl-transparent :brdr-cl-bg-primary relative inline-flex pointer color', (selected > 0 && selected === parseInt(variant.value)) ? 'active' : '']"
             @click="$emit('change', variant)"
             :aria-label="$t('Select material ') + variant.label"
@@ -95,7 +95,7 @@ export default {
       }
     }
     a {
-      color: #98694b;
+      color: #102DE5;
       transition: all 0.2s ease;
       &:hover {
         color: #f7941d;
