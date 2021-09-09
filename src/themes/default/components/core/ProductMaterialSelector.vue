@@ -9,9 +9,9 @@
         class="absolute brdr-1 brdr-cl-secondary block color-inside"
         v-lazy:background-image="backgroundColor(variant.label)"
       />
-      <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>
+<!--      <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>-->
     </button>
-    <span class="detail grade-tooltip" ref="gradeBox"></span>
+    <span class="detail grade-tooltip" ref="gradeBox" v-html="variant.label"></span>
   </div>
 </template>
 
@@ -91,7 +91,7 @@ export default {
       color: #102DE5;
       transition: all 0.2s ease;
       &:hover {
-        color: #f7941d;
+        color: #98694b;
       }
     }
     svg {
