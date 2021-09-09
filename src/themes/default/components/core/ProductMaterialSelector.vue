@@ -11,8 +11,16 @@
       />
       <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>
     </button>
-    <span class="detail grade-tooltip" ref="gradeBox" >
-      {{ processedValue }} <svg xmlns="http://www.w3.org/2000/svg" width="19.268" height="18.68" viewBox="0 0 19.268 18.68"> <g id="Group_82" data-name="Group 82" transform="translate(-1434.82 -1341.835)"> <circle id="Ellipse_1_copy" data-name="Ellipse 1 copy" cx="9.34" cy="9.34" r="9.34" transform="translate(1434.82 1341.835)" fill="#161d49"/> <text id="_" data-name="?" transform="translate(1442.088 1342.776)" fill="#fff" font-size="14.522" font-family="Humanist521BT-Roman, Humanst521 BT"><tspan x="0" y="14">?</tspan></text> </g></svg>
+    <span class="detail grade-tooltip" ref="gradeBox">
+      {{ processedValue }}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="19.268"
+        height="18.68"
+        viewBox="0 0 19.268 18.68"
+      >
+        <g id="Group_82" data-name="Group 82" transform="translate(-1434.82 -1341.835)"></g>
+      </svg>
     </span>
   </div>
 </template>
