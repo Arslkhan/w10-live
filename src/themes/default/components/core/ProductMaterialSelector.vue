@@ -1,14 +1,14 @@
 <template>
-  <div @mouseover="toggleTooltip()">
+  <div @mouseover="toggleTooltip()" @mouseout="removeTooltip">
     <button v-if="parseInt(variant.value) === current"
             :class="['mr10 mb5 bg-cl-transparent brdr-1 brdr-cl-transparent :brdr-cl-bg-primary relative inline-flex pointer color', (selected > 0 && selected === parseInt(variant.value)) ? 'active' : '']"
             @click="$emit('change', variant)"
             :aria-label="$t('Select material ') + variant.label"
     >
-    <span
-      class="absolute brdr-1 brdr-cl-secondary block color-inside"
-      v-lazy:background-image="backgroundColor(variant.label)"
-    />
+      <span
+        class="absolute brdr-1 brdr-cl-secondary block color-inside"
+        v-lazy:background-image="backgroundColor(variant.label)"
+      />
       <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>
     </button>
     <span class="detail grade-tooltip" ref="gradeBox" >
@@ -34,6 +34,11 @@ export default {
   methods: {
     toggleTooltip () {
       this.$refs.gradeBox.classList.toggle('show-tooltip');
+    },
+    removeTooltip () {
+      if (this.$refs.gradeBox && this.$refs.gradeBox.classList.contains('show-tooltip')) {
+        this.$refs.gradeBox.classList.remove('show-tooltip');
+      }
     },
     backgroundColor (label) {
       let leb1 = label.replace(/\s/g, '');
