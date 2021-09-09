@@ -40,6 +40,7 @@ export default {
       this.$refs.gradeBox.classList.toggle('show-tooltip');
     },
     removeTooltip () {
+      this.textToDisplay = ''
       if (this.$refs.gradeBox && this.$refs.gradeBox.classList.contains('show-tooltip')) {
         this.$refs.gradeBox.classList.remove('show-tooltip');
       }
