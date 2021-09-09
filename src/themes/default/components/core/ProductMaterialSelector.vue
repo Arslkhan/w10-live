@@ -9,9 +9,9 @@
         class="absolute brdr-1 brdr-cl-secondary block color-inside"
         v-lazy:background-image="backgroundColor(variant.label)"
       />
-<!--      <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>-->
+      <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>
     </button>
-    <span class="detail grade-tooltip" ref="gradeBox">{{ textToDisplay }}</span>
+<!--    <span class="detail grade-tooltip" ref="gradeBox">{{ textToDisplay }}</span>-->
   </div>
 </template>
 
