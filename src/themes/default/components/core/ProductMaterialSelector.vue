@@ -11,7 +11,7 @@
       />
 <!--      <span class="absolute h6 cl-text weight-600 color-label">{{variant.label}}</span>-->
     </button>
-    <span class="detail grade-tooltip" ref="gradeBox" v-html="variant.label"></span>
+    <span class="detail grade-tooltip" ref="gradeBox"></span>
   </div>
 </template>
 
