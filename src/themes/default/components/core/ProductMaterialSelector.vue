@@ -88,10 +88,10 @@ export default {
       }
     }
     a {
-      color: #102DE5;
+      color: #98694b;
       transition: all 0.2s ease;
       &:hover {
-        color: #98694b;
+        color: #f7941d;
       }
     }
     svg {
