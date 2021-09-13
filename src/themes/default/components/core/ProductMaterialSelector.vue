@@ -27,8 +27,8 @@ export default {
   },
   mixins: [filterMixin],
   methods: {
-    backgroundColor(label) {
-        return '/assets/material/' + label + '.jpg'
+    backgroundColor (label) {
+      return '/assets/material/' + label + '.jpg'
     }
   }
 }
