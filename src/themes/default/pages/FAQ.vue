@@ -139,7 +139,7 @@
         <p>For International deliveries we use a tracked DHL service and the cost will be advised at checkout.</p>
       </div>
       <div class="endpara">
-        <span>Should you have any product questions, please </span><a href="/contact-us">contact us</a>
+        <span>Should you have any product questions, please</span><a href="/contact-us">contact us</a>
       </div>
     </div>
   </div>
