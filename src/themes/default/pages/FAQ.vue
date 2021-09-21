@@ -1,6 +1,6 @@
 <template>
   <div class="accodion-main">
-    
+
       <div class="cost-image-heading container-fluid">
         <div class="container">
            <h3>Frequently Asked Questions</h3>
@@ -9,7 +9,7 @@
       <div class="container">
       <div class="cost-image">
         <img src="/assets/W10-Costa-Collab-icon.svg" alt="costaLogo">
-      </div>  
+      </div>
       <button class="accordion accordion-first">
         <span>1. Why should I reuse my cup?</span>
       </button>
@@ -19,15 +19,13 @@
         </p>
         <p>recycled. As takeaway drink consumption grows, so does the problem of waste.</p>
         <p>Choose to Re-use every single day.</p>
-        <p>Follow us W10.world.</p>
       </div>
 
       <button class="accordion">
         <span>2. Can I use my own coffee cup in coffee shops?</span>
       </button>
       <div class="panel">
-        <p>Incentives for bringing your own cup are becoming more and more common. With up to 50p/ 50c discount each time you choose to re-use,</p>
-        <p>re-uses, you could have paid for your reusable cup!</p>
+        <p>Incentives for bringing your own cup are becoming more and more common. For instance in Costa Coffee outlets buy four drinks in a reusable cup and get your fifth for free!</p>
         <p>Here’s the current discount table of the main coffee chains:</p>
         <table>
           <tr>
@@ -43,7 +41,7 @@
           <tr>
             <td>Café Nero</td>
             <td>Yes</td>
-            <td>2 stamps per coffee on our loyalty</td>
+            <td>2 stamps per coffee on our loyalty card</td>
           </tr>
           <tr>
             <td>Costa Coffee</td>
@@ -92,23 +90,19 @@
         <span>4.  Will there be a chemical reaction when storing acidic tea/coffee in the stainless steel products?</span>
       </button>
       <div class="panel">
-        <p>As the acidic contents in tea and coffee is low, the food-grade Stainless Steel is safe to store them for hours. However, we would recommend to first rinse the umbler/mug with water (best with hot water) to remove residues that may pick up the washing liquid during cleaning.</p>
+        <p>As the acidic contents in tea and coffee is low, the food-grade Stainless Steel is safe to store them for hours. However, we would recommend to first rinse the tumbler/mug with water (best with hot water) to remove residues that may pick up the washing liquid during cleaning.</p>
       </div>
       <button class="accordion">
         <span>5. What drinks should I not use in my cup?</span>
       </button>
       <div class="panel">
-        <p>See individual cup/bottle instructions but stainless steel products are not suitable for use with carbonated drinks, dry ice, water soluble vitamins, dairy products, fruit juice, and drinks /soups with a high salt content.</p>
+        <p>See individual cup/bottle instructions but stainless steel products are not suitable for use with carbonated drinks, dry ice, water soluble vitamins, dairy products, fruit juice, and drinks /soups with a high salt content. Do not leave residual liquids in your cup for prolonged periods. Dairy products are acidic.</p>
       </div>
       <button class="accordion">
         <span>6. Is my Cup dishwasher safe ?</span>
       </button>
       <div class="panel">
-        <p>
-          Follow the care instructions, supplied with your product and shown online.
-          Putting your cup in the dishwasher may reduce the life of the cup,
-        </p>
-        <p>it is always better to hand wash your cup. </p>
+        <p>Follow the care instructions, supplied with your product and shown online. Putting your cup in the dishwasher may reduce the life of the cup, it is always better to hand wash your cup.</p>
         <p>The body of the cup, if it states dishwasher safe on the instructions, maybe placed on the top rack only.</p>
         <p>Do not put your lid through the dishwasher, as this could degrade the materials, and could cause the seal to break </p>
       </div>
@@ -145,7 +139,7 @@
         <p>For International deliveries we use a tracked DHL service and the cost will be advised at checkout.</p>
       </div>
       <div class="endpara">
-        <span>Should you have any product questions, please email</span><a href="mailto:contactus@W10.co">contactus@W10.co</a>
+        <span>Should you have any product questions, please </span><a href="/contact-us">contact us</a>
       </div>
     </div>
   </div>
