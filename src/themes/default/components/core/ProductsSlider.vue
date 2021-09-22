@@ -40,7 +40,7 @@
             </div>
           </div>
             <div class="col-xs-12 mbp20">
-                <h3><router-link :to="localizedRoute('/our-range')" class="links" >Check out the whole range here ></router-link></h3>
+                <h3><router-link :to="localizedRoute('/our-range.html')" class="links" >Check out the whole range here ></router-link></h3>
               </div>
         </div>
       </div>
