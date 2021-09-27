@@ -22,6 +22,7 @@ import { InitialResourcesModule } from '@vue-storefront/core/modules/initial-res
 import { registerModule } from '@vue-storefront/core/lib/modules'
 import { ExternalCheckout } from './external-checkout'
 import { orderDetail } from './order-details'
+import { GoogleGtagModule } from './google-gtag';
 
 // TODO:distributed across proper pages BEFORE 1.11
 export function registerClientModules () {
@@ -46,6 +47,7 @@ export function registerClientModules () {
   // registerModule(DeviceModule)
   registerModule(ExternalCheckout)
   registerModule(orderDetail)
+  registerModule(GoogleGtagModule)
 }
 
 // Deprecated API, will be removed in 2.0

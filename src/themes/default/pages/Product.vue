@@ -12,9 +12,9 @@
               :product="getCurrentProduct"
             />
           </div>
-          
+
           <div class="col-xs-12 col-md-5 data">
-            
+
             <h1
               class="mt0 cl-mine-shaft product-name"
               data-testid="productName"
@@ -27,9 +27,9 @@
               />
             </h1>
             <p class="shortdescription"><span v-if="getCurrentProduct.short_description">{{ getCurrentProduct.short_description | strippedContent }}</span></p>
-      
+
             <div>
-              <product-price               
+              <product-price
                 v-if="getCurrentProduct.type_id !== 'grouped'"
                 :product="getCurrentProduct"
                 :custom-options="getCurrentCustomOptions"
@@ -128,16 +128,16 @@
               <h2 class="details-title">
                 {{ $t('DESCRIPTION') }}
               </h2>
-              
+
                <div class="copy" v-html="getCurrentProduct.description" />
-             
+
                </div>
           </div>
-            
+
           </div>
         </section>
       </div>
-      
+
     </section>
     <div class="row hotcoldp40">
       <div class="col-xs-12 flex center-xs middle-xs">
@@ -148,13 +148,13 @@
 
     <video-player :id="getCurrentProduct.id" />
   <about-product />
-  
 
- 
+
+
     <lazy-hydrate when-idle>
       <related-products type="upsell" :productID="getCurrentProduct.id" />
-    </lazy-hydrate> 
-  
+    </lazy-hydrate>
+
 
 
 
@@ -249,7 +249,7 @@ export default {
   },
   filters: {
     strippedContent: function(string) {
-           return string.replace(/<\/?[^>]+>/ig, " "); 
+           return string.replace(/<\/?[^>]+>/ig, " ");
     }
   },
   computed: {
@@ -319,6 +319,13 @@ export default {
   },
   async mounted () {
     await this.$store.dispatch('recently-viewed/addItem', this.getCurrentProduct)
+    this.setProductPage()
+    // For GTAG
+    let primaryCategory = this.getProductPrimaryCategory()
+    this.$store.commit('google-gtag/SET_PRODUCT_CURRENT', {
+      product: this.getCurrentProduct,
+      category: primaryCategory?.[ 0 ]?.name
+    })
   },
   async asyncData ({ store, route, context }) {
     if (context) context.output.cacheTags.add('product')
@@ -343,9 +350,41 @@ export default {
           this.getQuantity()
         }
       }
+    },
+    currRoute (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        // For GTAG
+        this.setProductPage()
+      }
     }
   },
   methods: {
+    setProductPage () {
+      let primaryCategory = this.getProductPrimaryCategory()
+      let productPayload = {
+        product: this.getCurrentProduct
+      }
+      if (primaryCategory && primaryCategory.length > 0 && primaryCategory[ 0 ]) {
+        productPayload[ 'category' ] = primaryCategory[ 0 ].name
+      }
+      this.$store.commit('google-gtag/SET_PRODUCT_CLICK', productPayload)
+    },
+    getProductPrimaryCategory () {
+      if (
+        this.getCurrentProduct &&
+        typeof this.getCurrentProduct !== 'undefined' &&
+        this.getCurrentProduct.category &&
+        typeof this.getCurrentProduct.category !== 'undefined' &&
+        this.getCurrentProduct.primary_category
+      ) {
+        if (typeof this.getCurrentProduct.category === 'object') {
+          return Object.keys(this.getCurrentProduct.category).filter(c => {
+            return parseInt(this.getCurrentProduct.category[ c ].category_id) === parseInt(this.getCurrentProduct.primary_category)
+          }).map(c => ({ ...this.getCurrentProduct.category[ c ] }))
+        }
+      }
+      return false
+    },
     showDetails (event) {
       this.detailsOpen = true
       event.target.classList.add('hidden')
@@ -403,7 +442,7 @@ export default {
       this.quantityError = error
     }
   },
-  
+
   metaInfo() {
         return {
             title: htmlDecode(this.getCurrentProduct.meta_title || this.getCurrentProduct.name) + " - ",
@@ -414,7 +453,7 @@ export default {
                 { property: 'og:description', content: this.getCurrentProduct.meta_description ? htmlDecode(this.getCurrentProduct.meta_description)  : ''},
                 {property: 'og:type', content: 'website'},
                 {property: 'og:url', content: 'https://w10.world/' + this.$route.path},
-                {property: 'og:image', content: 'https://w10.world/img/0/0/resize/catalog/product/' + this.getCurrentProduct.image },    
+                {property: 'og:image', content: 'https://w10.world/img/0/0/resize/catalog/product/' + this.getCurrentProduct.image },
                 {property: 'og:image:width', content: '800px'},
                 {property: 'og:image:height', content: '800px'}
             ]
@@ -609,7 +648,7 @@ $bg-secondary: color(secondary, $colors-background);
     height: auto;
     padding: 20px;}
    }
- 
+
 h1{font-size: 30px; font-weight: 300; text-transform: uppercase; margin: 0; padding: 0;}
 .yellow{color: #fd911b;}
 .f19{font-size: 19px;}
