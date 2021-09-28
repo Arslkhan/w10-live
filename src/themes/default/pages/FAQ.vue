@@ -1,6 +1,6 @@
 <template>
   <div class="accodion-main">
-    
+
       <div class="cost-image-heading container-fluid">
         <div class="container">
            <h3>Frequently Asked Questions</h3>
@@ -9,7 +9,7 @@
       <div class="container">
       <div class="cost-image">
         <img src="/assets/W10-Costa-Collab-icon.svg" alt="costaLogo">
-      </div>  
+      </div>
       <button class="accordion accordion-first">
         <span>1. Why should I reuse my cup?</span>
       </button>
@@ -28,49 +28,49 @@
       <div class="panel">
         <p>Incentives for bringing your own cup are becoming more and more common. With up to 50p/ 50c discount each time you choose to re-use,</p>
         <p>re-uses, you could have paid for your reusable cup!</p>
-        <p>Here’s the current discount table of the main coffee chains:</p>
-        <table>
-          <tr>
-            <th>Chain</th>
-            <th>Reuse</th>
-            <th>Discount</th>
-          </tr>
-          <tr>
-            <td>Pret a Manger</td>
-            <td>Yes</td>
-            <td>£0.50p</td>
-          </tr>
-          <tr>
-            <td>Café Nero</td>
-            <td>Yes</td>
-            <td>2 stamps per coffee on our loyalty</td>
-          </tr>
-          <tr>
-            <td>Costa Coffee</td>
-            <td>Yes</td>
-            <td>£0.25p (Excludes some franchises)</td>
-          </tr>
-          <tr>
-            <td>Starbucks</td>
-            <td>Yes</td>
-            <td>£0.25p</td>
-          </tr>
-          <tr>
-            <td>Roadchef “Fresh Food Cafe”</td>
-            <td>Yes</td>
-            <td>£0.25p</td>
-          </tr>
-          <tr>
-            <td>Greggs</td>
-            <td>Yes</td>
-            <td>£0.25p</td>
-          </tr>
-          <tr>
-            <td>Benugo</td>
-            <td>Yes</td>
-            <td>£0.25p</td>
-          </tr>
-        </table>
+<!--        <p>Here’s the current discount table of the main coffee chains:</p>-->
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <th>Chain</th>-->
+<!--            <th>Reuse</th>-->
+<!--            <th>Discount</th>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Pret a Manger</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>£0.50p</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Café Nero</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>2 stamps per coffee on our loyalty</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Costa Coffee</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>£0.25p (Excludes some franchises)</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Starbucks</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>£0.25p</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Roadchef “Fresh Food Cafe”</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>£0.25p</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Greggs</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>£0.25p</td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td>Benugo</td>-->
+<!--            <td>Yes</td>-->
+<!--            <td>£0.25p</td>-->
+<!--          </tr>-->
+<!--        </table>-->
       </div>
 
       <button class="accordion">
