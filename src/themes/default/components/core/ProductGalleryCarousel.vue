@@ -1,95 +1,65 @@
 <template>
-  <section>
-    <div class="media-gallery-carousel">
-      <no-ssr>
-      <carousel
-        :per-page="1"
-        :mouse-drag="false"
-        :navigation-enabled="false"
-        :pagination-enabled="false"
-        pagination-active-color="#828282"
-        pagination-color="transparent"
-        navigation-next-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_right</i>"
-        navigation-prev-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_left</i>"
-        ref="carousel"
-        :speed="carouselTransitionSpeed"
-        @pageChange="pageChange"
+  <div class="media-gallery-carousel">
+    <VueSlickCarousel
+      :arrows="true"
+      ref="carousel"
+      :speed="carouselTransitionSpeed"
+      @pageChange="pageChange"
+      :navigate-to="currentPage"
+      class="mainGallery-Carousel"
+    >
+      <div
+        v-for="(images, index) in gallery"
+        :key="images.src"
       >
-        <slide
-          v-for="(images, index) in gallery"
-          :key="images.src"
+        <div
+          class="product-image-container bg-cl-secondary"
+          :class="{'video-container w-100 h-100 flex relative': images.video}"
         >
-          <div
-            class="product-image-container bg-cl-white"
-            :class="{'video-container w-100 h-100 flex relative': images.video}"
+          <product-image
+            v-show="hideImageAtIndex !== index"
+            @dblclick="openOverlay"
+            class="pointer image"
+            :image="images"
+            :alt="productName | htmlDecode"
+          />
+          <product-video
+            v-if="images.video && (index === currentPage)"
+            v-bind="images.video"
+            :index="index"
+            @video-started="onVideoStarted"
+          />
+        </div>
+      </div>
+    </VueSlickCarousel>
+    <i
+      class="zoom-in material-icons p15 cl-bgs-tertiary pointer"
+      @click="openOverlay"
+    >zoom_in</i>
+    <div class="Galleries" v-if="gallery.length > 1">
+      <div class="main-gallery">
+        <VueSlickCarousel
+          v-bind="setting"
+          :infinite="false"
+          ref="c2"
+          :draggable=false
+          :slidesToShow='5'
+          :slidesToScroll='1'
+          :rows='1'
+          :initialSlide='0'
+          class="thumbnail-arrows"
+          :speed=300
+          @afterChange="pageChange">
           >
-            <product-image
-              v-show="hideImageAtIndex !== index"
-              @click="openOverlay"
-              class="pointer image"
-              :image="images"
-              :alt="productName | htmlDecode"
-            />
-           
-            
-
-            <product-video
-              v-if="images.video && (index === currentPage)"
-              v-bind="images.video"
-              :index="index"
-              @video-started="onVideoStarted"
-            />
+          <div v-for="(images, index) in gallery" :key="images.src">
+            <img :src="images.src" :alt="productName" id="thumnail"
+                 :class="{'active-img-slide': selected ? images.src == selected : (!firstslideIndex ? index == 0 : index === 'noone'), 'drag-active' : index === firstslideIndex }"
+                 @click="onSelect(index,images.src)"/>
           </div>
-        </slide>
-      </carousel>
-      </no-ssr>
-      <!-- <i
-        class="zoom-in material-icons p15 cl-bgs-tertiary pointer"
-        @click="openOverlay"
-      >zoom_in</i> -->
+        </VueSlickCarousel>
+      </div>
     </div>
-    <div class="mt10 thumbs-gallery-carousel" ref="thumbs">
-      <no-ssr>
-      <carousel
-        :per-page-custom="[[768,4],[1024,5], [1440,6], [1660,7], [1936,8]]" 
-        :mouse-drag="false"
-        :navigation-enabled="false"
-        :pagination-enabled="false"
-        pagination-active-color="#828282"
-        pagination-color="transparent"
-        :navigation-next-label="nextLabel" :navigation-prev-label="prevLabel"
-        ref="thumbs"
-        :speed="carouselTransitionSpeed"
-        @pageChange="pageChange"
-      >
-        <slide
-          v-for="(images, index) in gallery"
-          :key="images.src"
-        >
-          <div
-            class="media-gallery-carousel__thumb bg-cl-transparent inline-flex pb10 mx5"
-            @click="active = index" :class="{thumb__active:active == index}"
-          >
-            <product-image
-              @click="navigate(index)"
-              :image="images"
-              :alt="productName | htmlDecode"
-            />
-          </div>
-        </slide>
-      </carousel>
-      </no-ssr>
-    </div>
-    <!-- <ul class="media-gallery-carousel__thumbs m0 p0 hidden-xs mt10" ref="thumbs">
-      <li class="media-gallery-carousel__thumb bg-cl-transparent inline-flex pb10" @click="active = index" :class="{thumb__active:active == index}" v-for="(images, index) in gallery" :key="images.src">
-        <product-image
-          @click="navigate(index)"
-          :image="images"
-          :alt="productName | htmlDecode"
-        />
-      </li>
-    </ul> -->
-  </section>
+  </div>
 </template>
 
 <script>
@@ -99,15 +69,17 @@ import ProductVideo from './ProductVideo'
 import reduce from 'lodash-es/reduce'
 import map from 'lodash-es/map'
 import NoSSR from 'vue-no-ssr'
+import VueSlickCarousel from 'vue-slick-carousel'
 
 export default {
   name: 'ProductGalleryCarousel',
   components: {
     ProductImage,
     ProductVideo,
-     'Carousel': () => process.browser ? import('vue-carousel').then(Slider => Slider.Carousel) : null,
-     'Slide': () => process.browser ? import('vue-carousel').then(Slider => Slider.Slide) : null,
-    'no-ssr': NoSSR
+    'Carousel': () => process.browser ? import('vue-carousel').then(Slider => Slider.Carousel) : null,
+    'Slide': () => process.browser ? import('vue-carousel').then(Slider => Slider.Slide) : null,
+    'no-ssr': NoSSR,
+    VueSlickCarousel
   },
   props: {
     gallery: {
@@ -281,7 +253,7 @@ export default {
       opacity: .4;
       will-change: opacity;
     }
-    
+
     &::before {
       content: '';
       position: absolute;
