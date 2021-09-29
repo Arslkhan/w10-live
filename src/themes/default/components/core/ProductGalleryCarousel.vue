@@ -70,14 +70,16 @@ import reduce from 'lodash-es/reduce'
 import map from 'lodash-es/map'
 import NoSSR from 'vue-no-ssr'
 import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 export default {
   name: 'ProductGalleryCarousel',
   components: {
     ProductImage,
     ProductVideo,
-    'Carousel': () => process.browser ? import('vue-carousel').then(Slider => Slider.Carousel) : null,
-    'Slide': () => process.browser ? import('vue-carousel').then(Slider => Slider.Slide) : null,
+    'Carousel': () => import(/* webpackChunkName: "vue-carousel" */ 'vue-carousel').then(Slider => Slider.Carousel),
+    'Slide': () => import(/* webpackChunkName: "vue-carousel" */ 'vue-carousel').then(Slider => Slider.Slide),
     'no-ssr': NoSSR,
     VueSlickCarousel
   },
@@ -97,19 +99,44 @@ export default {
   },
   data () {
     return {
+      selected: '',
+      firstslideIndex: null,
       carouselTransition: true,
       carouselTransitionSpeed: 0,
       currentColor: 0,
       currentPage: 0,
       hideImageAtIndex: null,
       active: 0,
-       nextLabel: "<span class='material-icons'>keyboard_arrow_right</span>",
+      nextLabel: "<span class='material-icons'>keyboard_arrow_right</span>",
       prevLabel: "<span class='material-icons'>keyboard_arrow_left</span>",
+      setting: {
+        'lazyLoad': 'onDemand',
+        'responsive': [
+          {
+            'breakpoint': 1199,
+            'settings': {
+              'slidesToShow': 4
+            }
+          },
+          {
+            'breakpoint': 991,
+            'settings': {
+              'slidesToShow': 3
+            }
+          },
+          {
+            'breakpoint': 767,
+            'settings': {
+              ' "slidesToShow"': 4
+            }
+          }
+        ]
+      }
     }
   },
   computed: {},
   beforeMount () {
-    this.$bus.$on('filter-changed-product', this.selectVariant)
+    this.$bus.$on('product-after-configure', this.selectVariant)
     this.$bus.$on('product-after-load', this.selectVariant)
   },
   mounted () {
@@ -123,16 +150,43 @@ export default {
     this.$emit('loaded')
   },
   beforeDestroy () {
-    this.$bus.$off('filter-changed-product', this.selectVariant)
+    this.$bus.$off('product-after-configure', this.selectVariant)
     this.$bus.$off('product-after-load', this.selectVariant)
   },
   methods: {
+    onSelect (slide, imgSrc) {
+      this.selected = imgSrc
+      this.firstslideIndex = null
+      if (!this.afterchangeCalled && !this.startSlide) {
+        setTimeout(() => {
+          this.$refs.carousel.goTo(slide)
+          this.startSlide = 0
+        }, 500);
+      } else {
+        this.$refs.carousel.goTo(slide)
+        this.startSlide = 0
+      }
+      this.slideToChange = slide
+      this.afterchangeCalled = null
+    },
+    pageChange (index) {
+      this.stopVideo()
+      this.currentPage = index
+      this.hideImageAtIndex = null
+      this.afterchangeCalled = 'called'
+    },
+    beforeChange (oldSlide, newSlide) {
+      this.$emit('pageChange', newSlide)
+      this.selected = ""
+      this.firstslideIndex = newSlide
+    },
     navigate (index) {
-      if (this.$refs.carousel) {
-        this.$refs.carousel.goToPage(index)
+      if (index < 0) return
+        this.currentPage = index
       }
     },
-    selectVariant () {
+    async selectVariant (configuration) {
+      await this.$nextTick()
       if (config.products.gallery.mergeConfigurableChildren) {
         const option = reduce(map(this.configuration, 'attribute_code'), (result, attribute) => {
           result[attribute] = this.configuration[attribute].id
@@ -141,7 +195,7 @@ export default {
         if (option) {
           let index = this.gallery.findIndex(
             obj => obj.id && Object.entries(obj.id).toString() === Object.entries(option).toString(), option)
-          if (index < 0) index = this.gallery.findIndex(obj => obj.id && obj.id.color === option.color)
+          if (index < 0) index = this.gallery.findIndex(obj => String(obj.id && obj.id.color) === String(option.color))
           this.navigate(index)
         }
       }
@@ -153,7 +207,7 @@ export default {
       this.$emit('toggle', currentSlide)
     },
     switchCarouselSpeed () {
-      const {color} = this.configuration
+      const { color } = this.configuration
       if (color && this.currentColor !== color.id) {
         this.currentColor = color.id
         this.carouselTransitionSpeed = 0
@@ -176,99 +230,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '~theme/css/animations/transitions';
- .thumb {
-    max-height: 80px;
-  }
 .media-gallery-carousel {
   position: relative;
   text-align: center;
   height: 100%;
-
-  &__thumbs{
-    list-style: none;
-    width:100%;
-    height: 100%;
-    overflow: auto;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    @media (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  &__thumb{
-    max-width: 181px;
-    height: auto;
-    width: 200px;
-    cursor: pointer;
-    position: relative;
-    @media (max-width: 1440px) {
-      width: 96px;
-     }
-     @media (max-width: 1366px) {
-      width: 92px;
-     }
-     @media (max-width: 1024px) {
-       width: 82px;
-     }
-     @media (max-width: 768px) {
-       width: 72px;
-     }
-
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 30px;
-      height: 0;
-      background-color: #98694b;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    &:hover:not(.thumb__active) {
-        &::before {
-          height: 2px;
-          background-color: #e3e3e3;
-        }
-      }
-
-    & > *{
-      opacity: 1;
-       &:hover {
-        will-change: opacity;
-        transition: .3s opacity $motion-main;
-        opacity: .4;
-      }
-    }
-  }
 }
-
-  .thumb__active {
-    & > * {
-      opacity: .4;
-      will-change: opacity;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 30px;
-      height: 2px;
-      background-color: #98694b;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
 .zoom-in {
   position: absolute;
-  bottom: 0;
+  bottom: 150px;
   right: 0;
 }
 .image{
@@ -283,22 +252,90 @@ export default {
   align-items: center;
   justify-content: center;
 }
-</style>
 
+</style>
 <style lang="scss">
-// .VueCarousel-navigation-next {
-//   right: 25px !important;
-// }
-// .VueCarousel-navigation-prev {
-//   left: 25px !important;
-// }
-.thumbs-gallery-carousel {
-  .VueCarousel-inner {
-    flex-basis: auto !important;
-    //justify-content: center;
+.mainGallery-Carousel{
+  .slick-next{
+    right: -22px;
+    @media screen and (max-width:374px) {
+      right: -16px;
+    }
+    &:before{
+      color: transparent;
+      background: url('/assets/right-arrow-svg.svg');
+    }
+  }
+  .slick-prev{
+    &:before{
+      color: transparent;
+      background: url('/assets/left-arrow-svg.svg');
+    }
+    @media screen and (max-width:480px) {
+      left:-15px;
+    }
+  }
+  //   .slick-next{
+  //     &:before{
+  //       content:none;
+  //     }
+  //   }
+  //   .slick-prev{
+  //     &:before{
+  //       content:none;
+  //     }
+  //   }
+}
+
+.thumbnail-arrows{
+  padding-left: 5px;
+  @media screen and (min-width:400px)and(max-width:480px) {
+    padding-left: 10px;
+  }
+  .slick-slide{
+    img{
+      border: 1px solid #d5d5d5;
+      max-width: 90px;
+      max-height: 90px;
+      @media screen and (max-width:440px) {
+        max-width: 72px;
+        max-height: 72px;
+      }
+      @media screen and (max-width:374px) {
+        max-width: 65px;
+        max-height: 65px;
+      }
+    }
+  }
+  .slick-next{
+    right: -10px;
+    @media screen and (max-width:374px) {
+      right: -16px;
+    }
+    &:before{
+      color: transparent;
+      background: url('/assets/right-arrow-svg.svg');
+    }
+  }
+  .slick-prev{
+    &:before{
+      color: transparent;
+      background: url('/assets/left-arrow-svg.svg');
+    }
+    @media screen and (max-width:480px) {
+      left:-15px;
+    }
   }
 }
 
+.ProductThumbnails{
+  .product-image{
+    img{
+      width: 92px !important;
+      height: auto;
+    }
+  }
+}
 .media-gallery-carousel,
 .media-zoom-carousel {
   .VueCarousel-pagination {
