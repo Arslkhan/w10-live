@@ -42,9 +42,9 @@ export default {
 @media (max-width: 1220px) {
   .mainlogo {width: 160px; height: auto;}
 }
-/* @media (max-width: 990px) {
-  .mainlogo {width: 160px;}
-} */
+@media (max-width: 816px) {
+  .mainlogo {width: 137px;}
+}
 @media (max-width: 768px) {
   .mainlogo{height: 50px; width: auto; margin-right: 65px;}
 }
