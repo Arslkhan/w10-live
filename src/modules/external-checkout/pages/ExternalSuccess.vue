@@ -1,5 +1,8 @@
 <template>
   <div id="thank_you_external">
+    <div class="Confirmation-logo">
+      <img src="/assets/Costa logo.png" alt="Costa-W10-confirmation">
+    </div>
     <header class="thank-you-title">
       <div class="container center-xs middle-xs">
         <h1>
@@ -279,6 +282,15 @@ hr {
     color: black;
     margin: 40px 0 0px 0;
     padding: 0;
+  }
+}
+.Confirmation-logo {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .Confirmation-logo img{
+    width: 100%;
   }
 }
 
