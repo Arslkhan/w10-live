@@ -17,7 +17,7 @@
             <logo :imgsrc="'/assets/logo2.png'" class="visible-xs" />
             <logo :imgsrc="'/assets/logo.png'" class="hidden-xs" />
           </div>
-          <div class="col-md-6 hidden-xs center-xs headerlink">
+          <div class="col-md-7 hidden-xs center-xs headerlink">
             <router-link
               class="inline-flex weight-500 relative no-underline"
               :to="localizedRoute('/our-range.html')"
@@ -63,22 +63,21 @@
             >
               Contact Us
             </router-link>
-            <!-- <div class="spacer relative inline-flex" />
-            <router-link
+            <div class="spacer relative inline-flex" />
+            <a
               class="inline-flex weight-500 relative no-underline"
-              :to="localizedRoute('/https://costacoffee.w10.world')"
-              exact
+              href="https://costacoffee.w10.world/"
             >
               CostaCoffeeRange
-            </router-link> -->
+            </a>
           </div>
-          <div class="logodiv col-md-1">
+          <!-- <div class="logodiv col-md-1">
             <a
               class="inline-flex weight-500 relative no-underline costa-logo" href="http://costa.w10.world/"
             >
               <img src="/assets/Costa_Logo.svg" alt="costaLogo">
             </a>
-          </div>
+          </div> -->
           <div class="col-xs-4 end-xs p0 m0 mt15 visible-xs mobile-cart">
             <wishlist-icon class="icon pointer" />
             <microcart-icon class="icon pointer" />
@@ -281,7 +280,7 @@ header {
      }
    }
     .icons-group {
-      @media (max-width:768px) { 
+      @media (max-width:768px) {
         display: none;
       }
     @media (max-width:1265px) {
@@ -290,8 +289,8 @@ header {
       padding: 0;
     }
     @media (max-width:816px) {
-      flex-basis: 22%;
-      max-width: 22%;
+      flex-basis: 18%;
+      max-width: 18%;
       padding: 0;
     }
       display: flex;
@@ -331,6 +330,9 @@ header {
       span {
         padding: 0 9px;
         cursor: pointer;
+        @media (min-width: 768px) and (max-width: 780px) { 
+          padding: 0 4px;
+        }
         svg {
           width: 26px;
           fill: #fff;
@@ -348,20 +350,24 @@ header {
 }
 .logo {
   margin-top: 22px;
-  @media (min-width:768px) and (max-width:1265px) {
-    flex-basis: 17%;
-    max-width: 17%;
+    @media (min-width:768px) and (max-width:1491px) {
+    flex-basis: 13%;
+    max-width: 13%;
   }
-  @media (min-width:768px) and (max-width:1092px) {
-    flex-basis: 16%;
-    max-width: 16%;
-  }
-  @media (min-width:768px) and (max-width:865px) {
-    flex-basis: 20%;
-    max-width: 20%;
-    // flex-basis: 18%;
-    // max-width: 18%;
-  }
+  // @media (min-width:768px) and (max-width:1265px) {
+  //   flex-basis: 17%;
+  //   max-width: 17%;
+  // }
+  // @media (min-width:768px) and (max-width:1092px) {
+  //   flex-basis: 16%;
+  //   max-width: 16%;
+  // }
+  // @media (min-width:768px) and (max-width:865px) {
+  //   flex-basis: 20%;
+  //   max-width: 20%;
+  //   // flex-basis: 18%;
+  //   // max-width: 18%;
+  // }
   @media (min-width:768px) and (max-width:816px) {
     flex-basis: 14%;
     max-width: 14%;
@@ -376,17 +382,28 @@ header {
 }
 .headerlink {
   margin-top: 23px;
-  @media (max-width: 1265px) {
-    flex-basis: 51%;
-    max-width: 51%;
+    @media (min-width: 768px) and (max-width: 1491px) {
+    flex-basis: 67%;
+    max-width: 67%;
   }
-  @media (max-width:1027px) {
-    flex-basis: 54%;
-    max-width: 54%;
+  @media (min-width: 768px) and (max-width: 1266px) {
+    justify-content: flex-end;
   }
+  @media (min-width: 768px) and (max-width: 816px) {
+    justify-content: unset;
+    padding-left: 42px;
+  }
+  // @media (max-width: 1265px) {
+  //   flex-basis: 51%;
+  //   max-width: 51%;
+  // }
+  // @media (max-width:1027px) {
+  //   flex-basis: 54%;
+  //   max-width: 54%;
+  // }
    @media (max-width:940px) {
     padding-right: 0;
-    justify-content: center;
+    // justify-content: center;
    }
   // @media (max-width:1090px) {
   //   flex-basis: 61%;
@@ -428,23 +445,32 @@ header {
 .spacer {
   border-right: 1px solid #aa806e;
   margin: 0 20px;
-}
-@media (max-width: 940px) {
-  .spacer {
+  @media (min-width: 768px) and (max-width: 1082px) {
     margin: 0 10px;
   }
-  @media (max-width: 816px) {
+}
+@media (max-width: 940px) {
+  // .spacer {
+  //   margin: 0 10px;
+  // }
+  @media (max-width: 952px) {
     .spacer {
       margin: 0 6px;
+      @media (min-width: 768px) and (max-width: 852px) {
+        margin: 0 3px;
+      }
     }
   }
-  .headerlink a {
-    font-size: 14px;
-  }
+  // .headerlink a {
+  //   font-size: 14px;
+  // }
 }
 @media (max-width: 896px) {
   .headerlink a {
     font-size: 12.4px;
+    @media (min-width: 768px) and (max-width: 816px) {
+      font-size: 12px;
+    }
   }
 }
 // @media (max-width: 769px) {
