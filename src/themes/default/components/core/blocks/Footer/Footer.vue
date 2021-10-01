@@ -3,7 +3,7 @@
     <div class="footerholder">
       <div class="container">
         <div class="row m0 center-xs between-md">
-          <div class="col-xs-12 mb20">
+          <div class="col-xs-12 mb20 logo-footer">
             <img v-lazy="'/assets/logo2.png'" height="124px" alt="W10">
           </div>
           <div class="col-xs-12">
@@ -134,7 +134,17 @@ export default {
     width: 1500px;
   }
 
-}padding: 100px 0 65px 0;}
+}padding: 15px 0 15px 0;}
+@media (min-width: 768px) {
+  .logo-footer {
+    margin-bottom: 10px;
+  }
+  .TIDEWAY {
+    p {
+      margin: 10px 0;
+    }
+  }
+}
 footer{background: #000;}
 a:hover{color: #98694b; text-decoration: none !important; background-color: black !important;}
 p,a{color: #98694b; font-size: 18px; text-transform: uppercase;}

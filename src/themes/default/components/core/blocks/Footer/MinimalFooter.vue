@@ -3,7 +3,7 @@
     <div class="footerholder">
       <div class="container">
         <div class="row m0 center-xs between-md">
-          <div class="col-xs-12 mb20"><img src="/assets/logo2.png" alt="W10" /></div>
+          <div class="col-xs-12 mb20 logo-footer"><img src="/assets/logo2.png" alt="W10" /></div>
           <div class="col-xs-12"><img src="/assets/cred.png" alt="BPMA Accedited" /></div>
           <div class="col-xs-12"><p>+44 (0)208 827 0190<br/>
             <a href="mailto:enquiries@jogroup.co.uk">enquiries@jogroup.co.uk</a></p></div>
@@ -24,7 +24,7 @@
               {{ $t('PRIVACY POLICY') }}
             </router-link>
           </div>
-          <div class="col-xs-12">
+          <div class="col-xs-12 TIDEWAY">
             <p>TIDEWAY YARD UNIT T07, <br/>
               125 MORTLAKE HIGH STREET,  <br/>
               LONDON, SW14 8SN</p></div>
@@ -58,7 +58,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.footerholder{padding: 100px 0 65px 0;}
+.footerholder{padding: 15px 0 15px 0;}
+@media (min-width: 768px) {
+  .logo-footer {
+    margin-bottom: 10px;
+  }
+    .TIDEWAY {
+    p {
+      margin: 10px 0;
+    }
+  }
+}
 footer{background: #000;}
 a:hover{color: #98694b; text-decoration: none !important; background-color: black !important;}
 p,a{color: #98694b; font-size: 20px; text-transform: uppercase;}
