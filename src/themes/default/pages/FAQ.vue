@@ -15,9 +15,7 @@
       </button>
       <div class="panel">
         <p>
-          Each year over 300 billion single-use coffee cups are manufactured globally. Due to their plastic content, less than 2% will ever be
-        </p>
-        <p>recycled. As takeaway drink consumption grows, so does the problem of waste.</p>
+          Each year over 300 billion single-use coffee cups are manufactured globally. Due to their plastic content, less than 2% will ever be recycled. As takeaway drink consumption grows, so does the problem of waste.</p>
         <p>Choose to Re-use every single day.</p>
       </div>
 
@@ -25,8 +23,7 @@
         <span>2. Can I use my own coffee cup in coffee shops?</span>
       </button>
       <div class="panel">
-        <p>Incentives for bringing your own cup are becoming more and more common. With up to 50p/ 50c discount each time you choose to re-use,</p>
-        <p>re-uses, you could have paid for your reusable cup!</p>
+        <p>Incentives for bringing your own cup are becoming more and more common. For instance in Costa Coffee outlets buy four drinks in a reusable cup and get your fifth for free!</p>
 <!--        <p>Here’s the current discount table of the main coffee chains:</p>-->
 <!--        <table>-->
 <!--          <tr>-->
