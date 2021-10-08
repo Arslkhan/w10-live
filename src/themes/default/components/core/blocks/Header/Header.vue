@@ -68,7 +68,7 @@
               class="inline-flex weight-500 relative no-underline"
               href="https://costacoffee.w10.world/"
             >
-              CostaCoffeeRange
+              Costa CoffeeRange
             </a>
           </div>
           <!-- <div class="logodiv col-md-1">
@@ -330,7 +330,7 @@ header {
       span {
         padding: 0 9px;
         cursor: pointer;
-        @media (min-width: 768px) and (max-width: 780px) { 
+        @media (min-width: 768px) and (max-width: 780px) {
           padding: 0 4px;
         }
         svg {

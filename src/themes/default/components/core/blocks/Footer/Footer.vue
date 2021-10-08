@@ -64,7 +64,7 @@
                 to="https://costacoffee.w10.world/"
                 exact
               >
-                CostaCoffeeRange
+                Costa CoffeeRange
               </router-link>
             </div>
             <div class="social-icons">
