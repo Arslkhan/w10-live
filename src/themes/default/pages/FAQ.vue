@@ -1,11 +1,11 @@
 <template>
   <div class="accodion-main">
 
-      <div class="cost-image-heading container-fluid">
-        <div class="container">
-           <h3>Frequently Asked Questions</h3>
-        </div>
-      </div>
+<!--      <div class="cost-image-heading container-fluid">-->
+<!--        <div class="container">-->
+<!--           <h3>Frequently Asked Questions</h3>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="container">
       <div class="cost-image">
         <img src="/assets/W10-Costa-Collab-icon.svg" alt="costaLogo">
