@@ -5,6 +5,7 @@ const Product = () => import(/* webpackChunkName: "vsf-product" */ 'theme/pages/
 const Category = () => import(/* webpackChunkName: "vsf-category" */ 'theme/pages/Category.vue')
 const CmsPage = () => import(/* webpackChunkName: "vsf-cms" */ 'theme/pages/CmsPage.vue')
 const Checkout = () => import(/* webpackChunkName: "vsf-checkout" */ 'theme/pages/Checkout.vue')
+const FAQ = () => import(/* webpackChunkName: "vsf-checkout" */ 'theme/pages/FAQ.vue')
 const Compare = () => import(/* webpackChunkName: "vsf-compare" */ 'theme/pages/Compare.vue')
 const MyAccount = () => import(/* webpackChunkName: "vsf-my-account" */ 'theme/pages/MyAccount.vue')
 const Static = () => import(/* webpackChunkName: "vsf-static" */ 'theme/pages/Static.vue')
@@ -17,6 +18,7 @@ const ForgottenPassword = () => import(/* webpackChunkName: "about-us" */ 'theme
 let routes = [
   { name: 'home', path: '/', component: Home, alias: '/pwa.html', title: '' },
   { name: 'checkout', path: '/checkout', component: Checkout },
+  { name: 'faq', path: '/faq', component: FAQ },
   { name: 'my-account', path: '/my-account', component: MyAccount },
   { name: 'my-shipping-details', path: '/my-account/shipping-details', component: MyAccount, props: { activeBlock: 'MyShippingDetails' } },
   { name: 'my-newsletter', path: '/my-account/newsletter', component: MyAccount, props: { activeBlock: 'MyNewsletter' } },

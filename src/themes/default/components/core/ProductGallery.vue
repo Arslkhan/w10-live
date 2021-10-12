@@ -8,7 +8,7 @@
         :gallery="gallery"
         @close="toggleZoom"
       />
-      <no-ssr>
+      <!-- <no-ssr> -->
         <product-gallery-carousel
           v-if="showProductGalleryCarousel"
           :gallery="gallery"
@@ -18,7 +18,7 @@
           @close="onEscapePress"
           @loaded="carouselLoaded = true"
         />
-      </no-ssr>
+      <!-- </no-ssr> -->
     </div>
     <product-image v-else :image="offline" />
   </div>
