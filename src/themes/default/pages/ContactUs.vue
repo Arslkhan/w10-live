@@ -1,6 +1,6 @@
 <template>
   <div id="contact us">
-    <header class="headerimage" v-lazy:background-image="'/assets/hero.jpg'">
+    <header class="headerimage" v-lazy:background-image="'/assets/hero1.jpg'">
       <div class="container center-xs middle-xs aboutblock">
         <h1>
           CONTACT
