@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="inline-flex bg-cl-transparent brdr-none relative"
+    class="inline-flex bg-cl-transparent brdr-none relative wish"
     @click="toggleWishlistPanel"
     data-testid="wishlist-icon"
     :aria-label="$t('Open wishlist')"
@@ -32,5 +32,11 @@ export default {
     min-width: 16px;
     min-height: 16px;
     border-radius: 10px;
+  }
+  @media (max-width:865px) {
+    .wish {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 </style>

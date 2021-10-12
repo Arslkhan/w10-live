@@ -10,12 +10,13 @@
   >
     <button
       type="button"
-      class="bg-cl-transparent cl-white brdr-none p0"
+      class="bg-cl-transparent cl-white brdr-none p0 accountbutton"
     >
-      <img v-lazy="'/assets/accounticon.png'" height="28px" />
+      <div class="innerbutton">
+        <span>Sign in</span>
+        <img v-lazy="'/assets/accounticon.png'" height="28px">
+      </div>
     </button>
-
-    
   </div>
 </template>
 
@@ -26,8 +27,7 @@ import AccountIcon from '@vue-storefront/core/compatibility/components/blocks/He
 export default {
   mixins: [AccountIcon],
   components: {
-  },
-
+  }
 
 }
 </script>
@@ -80,5 +80,27 @@ $color-icon-hover: color(secondary, $colors-background);
     }
   }
 
+}
+.innerbutton {
+  display: flex;
+  align-items: center;
+  span {
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 18px;
+    @media (max-width:1442px) {
+      font-size: clamp(12.5px, 1.041vw, 15px);
+    }
+    // margin-right: 12px;
+    // @media (max-width: 1243px) {
+    //   margin-right: 6px;
+    //   font-size: 16px;
+    // }
+  }
+}
+@media (max-width:865px) {
+  .accountbutton {
+    padding-right: 0;
+  }
 }
 </style>
