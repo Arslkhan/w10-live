@@ -11,6 +11,7 @@
     <p class="head">
       Contact us
     </p>
+    <p>get in touch</p>
     <p class="contactUsP">
       <img src="/assets/hero1.jpg" alt="contact-us" class="Desktop-banner">
 <!--      <img src="/assets/contact-mobile.png" alt="contact-us" class="mobile-banner">-->
@@ -45,14 +46,14 @@ export default {
   margin-top: -15px;
 
   .head {
-    color: #6e2138;
+    //color: #6e2138;
     margin: 0;
     padding-top: 8px;
     font-size: 44px;
     //font-size: clamp(36px, 6.2vw, 72px);
     font-family: "Brandon_bld";
     position: absolute;
-    left: 43%;
+    left: 40%;
     z-index: 1;
     @media (max-width: 500px) {
       left: 28%;
@@ -236,7 +237,7 @@ export default {
     display: none;
   }
   .head {
-    left: 45% !important;
+    //left: 45% !important;
   }
 }
 .Return-Policy{
