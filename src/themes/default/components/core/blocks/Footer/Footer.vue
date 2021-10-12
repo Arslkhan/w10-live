@@ -63,7 +63,7 @@
                 class="return"
                 href="https://costacoffee.w10.world/"
               >
-                Costa CoffeeRange
+                Costa Coffee Range
               </a>
             </div>
             <div class="social-icons">
