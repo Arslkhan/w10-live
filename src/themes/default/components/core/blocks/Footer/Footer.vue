@@ -37,7 +37,7 @@
               <!-- <span>|</span> -->
               <router-link
 
-                to="/i/privacy"
+                to="/i/privacy-policy"
                 exact
               >
                 {{ $t('PRIVACY POLICY') }}
