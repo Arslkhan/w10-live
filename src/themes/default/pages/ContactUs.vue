@@ -52,7 +52,7 @@ export default {
   .head {
     margin: 0;
     padding-top: 8px;
-    font-size: 44px;
+    font-size: 76px;
     font-family: "Raleway";
     position: absolute;
     left: 40%;
@@ -69,10 +69,10 @@ export default {
     padding: 0;
     margin: 0px;
     text-transform: uppercase;
-    top: 122px;
+    top: 142px;
     position: absolute;
     z-index: 1;
-    left: 40.3%;
+    left: 46.3%;
   }
 
   .main-fields {
