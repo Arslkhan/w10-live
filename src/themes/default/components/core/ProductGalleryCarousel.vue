@@ -1,113 +1,130 @@
 <template>
-  <section>
-    <div class="media-gallery-carousel">
-      <no-ssr>
-      <carousel
-        :per-page="1"
-        :mouse-drag="false"
-        :navigation-enabled="false"
-        :pagination-enabled="false"
-        pagination-active-color="#828282"
-        pagination-color="transparent"
-        navigation-next-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_right</i>"
-        navigation-prev-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_left</i>"
-        ref="carousel"
-        :speed="carouselTransitionSpeed"
-        @pageChange="pageChange"
+  <div class="media-gallery-carousel">
+    <VueSlickCarousel
+      :arrows="true"
+      ref="carousel"
+      :speed="carouselTransitionSpeed"
+      @pageChange="pageChange"
+      :navigate-to="currentPage"
+      class="mainGallery-Carousel"
+    >
+      <div
+        v-for="(images, index) in gallery"
+        :key="images.src"
       >
-        <slide
-          v-for="(images, index) in gallery"
-          :key="images.src"
+        <div
+          class="product-image-container bg-cl-secondary"
+          :class="{'video-container w-100 h-100 flex relative': images.video}"
         >
-          <div
-            class="product-image-container bg-cl-white"
-            :class="{'video-container w-100 h-100 flex relative': images.video}"
-          >
-            <product-image
-              v-show="hideImageAtIndex !== index"
-              @click="openOverlay"
-              class="pointer image"
-              :image="images"
-              :alt="productName | htmlDecode"
-            />
-           
-            
+          <product-image
+            v-show="hideImageAtIndex !== index"
+            @dblclick="openOverlay"
+            class="pointer image"
+            :image="images"
+            :alt="productName | htmlDecode"
+          />
+          <product-video
+            v-if="images.video && (index === currentPage)"
+            v-bind="images.video"
+            :index="index"
+            @video-started="onVideoStarted"
+          />
+        </div>
+      </div>
+    </VueSlickCarousel>
+    <i
+      class="zoom-in material-icons p15 cl-bgs-tertiary pointer"
+      @click="openOverlay"
+    >zoom_in</i>
 
-            <product-video
-              v-if="images.video && (index === currentPage)"
-              v-bind="images.video"
-              :index="index"
-              @video-started="onVideoStarted"
-            />
-          </div>
-        </slide>
-      </carousel>
-      </no-ssr>
-      <!-- <i
-        class="zoom-in material-icons p15 cl-bgs-tertiary pointer"
-        @click="openOverlay"
-      >zoom_in</i> -->
-    </div>
-    <div class="mt10 thumbs-gallery-carousel" ref="thumbs">
-      <no-ssr>
-      <carousel
-        :per-page-custom="[[768,4],[1024,5], [1440,6], [1660,7], [1936,8]]" 
-        :mouse-drag="false"
-        :navigation-enabled="false"
-        :pagination-enabled="false"
-        pagination-active-color="#828282"
-        pagination-color="transparent"
-        :navigation-next-label="nextLabel" :navigation-prev-label="prevLabel"
-        ref="thumbs"
-        :speed="carouselTransitionSpeed"
-        @pageChange="pageChange"
-      >
-        <slide
-          v-for="(images, index) in gallery"
-          :key="images.src"
-        >
-          <div
-            class="media-gallery-carousel__thumb bg-cl-transparent inline-flex pb10 mx5"
-            @click="active = index" :class="{thumb__active:active == index}"
+     <div class="Galleries" v-if="gallery.length > 1">
+        <div class="main-gallery">
+        <VueSlickCarousel
+          v-bind="setting"
+          :infinite = "false"
+          ref="c2"
+          :draggable = false
+          :slidesToShow='4'
+          :slidesToScroll='1'
+          :rows='1'
+          :initialSlide='0'
+          class="thumbnail-arrows"
+          :speed=300
+          @afterChange="pageChange">
           >
-            <product-image
-              @click="navigate(index)"
-              :image="images"
-              :alt="productName | htmlDecode"
-            />
-          </div>
-        </slide>
-      </carousel>
-      </no-ssr>
-    </div>
-    <!-- <ul class="media-gallery-carousel__thumbs m0 p0 hidden-xs mt10" ref="thumbs">
-      <li class="media-gallery-carousel__thumb bg-cl-transparent inline-flex pb10" @click="active = index" :class="{thumb__active:active == index}" v-for="(images, index) in gallery" :key="images.src">
-        <product-image
-          @click="navigate(index)"
-          :image="images"
-          :alt="productName | htmlDecode"
-        />
-      </li>
-    </ul> -->
-  </section>
+        <div v-for="(images, index) in gallery" :key="images.src">
+          <img :src="images.src" :alt="productName" id="thumnail" :class="{'active-img-slide': selected ? images.src == selected : (!firstslideIndex ? index == 0 : index === 'noone'), 'drag-active' : index === firstslideIndex }"   @click="onSelect(index,images.src)" />
+        </div>
+      </VueSlickCarousel>
+      </div>
+      </div>
+
+   <!-- <div class="ProductThumbnails">
+     <carousel
+       :per-page-custom="[
+          [480, 0],
+          [768, 2],
+          [1000, 3],
+          [1200, 4],
+        ]"
+      :mouse-drag="false"
+      :navigation-enabled="true"
+      :pagination-enabled="false"
+      pagination-active-color="#828282"
+      pagination-color="transparent"
+      navigation-next-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_right</i>"
+      navigation-prev-label="<i class='material-icons p15 cl-bg-tertiary pointer'>keyboard_arrow_left</i>"
+      ref="carousel2"
+      :speed="carouselTransitionSpeed"
+      @pageChange="pageChange"
+      :navigate-to="currentPage"
+    >
+      <slide
+        v-for="(images, index) in gallery"
+        :key="images.src"
+      >
+        <div
+          class="product-image-container bg-cl-secondary"
+          :class="{'video-container w-100 h-100 flex relative': images.video}"
+        >
+          <product-image
+            v-show="hideImageAtIndex !== index"
+            @dblclick="openOverlay"
+            class="pointer image"
+            :image="images"
+            :alt="productName | htmlDecode"
+          />
+          <product-video
+            v-if="images.video && (index === currentPage)"
+            v-bind="images.video"
+            :index="index"
+            @video-started="onVideoStarted"
+          />
+        </div>
+      </slide>
+    </carousel>
+     </div> -->
+  </div>
 </template>
 
 <script>
 import config from 'config'
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import ProductImage from './ProductImage'
 import ProductVideo from './ProductVideo'
 import reduce from 'lodash-es/reduce'
 import map from 'lodash-es/map'
-import NoSSR from 'vue-no-ssr'
-
 export default {
   name: 'ProductGalleryCarousel',
   components: {
+    'Carousel': () => import(/* webpackChunkName: "vue-carousel" */ 'vue-carousel').then(Slider => Slider.Carousel),
+    'Slide': () => import(/* webpackChunkName: "vue-carousel" */ 'vue-carousel').then(Slider => Slider.Slide),
     ProductImage,
     ProductVideo,
-     'Carousel': () => process.browser ? import('vue-carousel').then(Slider => Slider.Carousel) : null,
-     'Slide': () => process.browser ? import('vue-carousel').then(Slider => Slider.Slide) : null,
-    'no-ssr': NoSSR
+    VueSlickCarousel
   },
   props: {
     gallery: {
@@ -125,42 +142,100 @@ export default {
   },
   data () {
     return {
+      selected: '',
+      firstslideIndex: null,
       carouselTransition: true,
       carouselTransitionSpeed: 0,
       currentColor: 0,
       currentPage: 0,
       hideImageAtIndex: null,
-      active: 0,
-       nextLabel: "<span class='material-icons'>keyboard_arrow_right</span>",
-      prevLabel: "<span class='material-icons'>keyboard_arrow_left</span>",
+      setting: {
+        'lazyLoad': 'onDemand',
+        'responsive': [
+          {
+            'breakpoint': 1920,
+            'settings': {
+              'slidesToShow': 5
+            }
+          },
+          {
+            'breakpoint': 1199,
+            'settings': {
+              'slidesToShow': 4
+            }
+          },
+          {
+            'breakpoint': 991,
+            'settings': {
+              'slidesToShow': 3
+            }
+          },
+          {
+            'breakpoint': 767,
+            'settings': {
+              ' "slidesToShow"': 4
+            }
+          },
+          {
+            'breakpoint': 480,
+            'settings': {
+              ' "slidesToShow"': 3
+            }
+          }
+        ]
+      }
     }
   },
   computed: {},
   beforeMount () {
-    this.$bus.$on('filter-changed-product', this.selectVariant)
+    this.$bus.$on('product-after-configure', this.selectVariant)
     this.$bus.$on('product-after-load', this.selectVariant)
   },
   mounted () {
     this.selectVariant()
-
     if (this.configuration.color) {
-      const {color} = this.configuration
+      const { color } = this.configuration
       this.currentColor = color.id
     }
-
     this.$emit('loaded')
   },
   beforeDestroy () {
-    this.$bus.$off('filter-changed-product', this.selectVariant)
+    this.$bus.$off('product-after-configure', this.selectVariant)
     this.$bus.$off('product-after-load', this.selectVariant)
   },
   methods: {
-    navigate (index) {
-      if (this.$refs.carousel) {
-        this.$refs.carousel.goToPage(index)
+    onSelect (slide, imgSrc) {
+      this.selected = imgSrc
+      this.firstslideIndex = null
+      if (!this.afterchangeCalled && !this.startSlide) {
+        setTimeout(() => {
+        this.$refs.carousel.goTo(slide)
+        this.startSlide = 0
+      }, 500);
+      } else {
+        this.$refs.carousel.goTo(slide)
+        this.startSlide = 0
       }
+      this.slideToChange = slide
+      this.afterchangeCalled = null
     },
-    selectVariant () {
+    pageChange (index) {
+      this.stopVideo()
+      this.currentPage = index
+      this.hideImageAtIndex = null
+      this.afterchangeCalled = 'called'
+    },
+    beforeChange (oldSlide, newSlide) {
+      this.$emit('pageChange', newSlide)
+      this.selected = ""
+      this.firstslideIndex = newSlide
+    },
+    navigate (index) {
+      if (index < 0) return
+      this.currentPage = index
+    },
+    async selectVariant (configuration) {
+      await this.$nextTick()
       if (config.products.gallery.mergeConfigurableChildren) {
         const option = reduce(map(this.configuration, 'attribute_code'), (result, attribute) => {
           result[attribute] = this.configuration[attribute].id
@@ -169,11 +244,10 @@ export default {
         if (option) {
           let index = this.gallery.findIndex(
             obj => obj.id && Object.entries(obj.id).toString() === Object.entries(option).toString(), option)
-          if (index < 0) index = this.gallery.findIndex(obj => obj.id && obj.id.color === option.color)
+          if (index < 0) index = this.gallery.findIndex(obj => String(obj.id && obj.id.color) === String(option.color))
           this.navigate(index)
         }
       }
-
       this.$emit('close')
     },
     openOverlay () {
@@ -181,7 +255,7 @@ export default {
       this.$emit('toggle', currentSlide)
     },
     switchCarouselSpeed () {
-      const {color} = this.configuration
+      const { color } = this.configuration
       if (color && this.currentColor !== color.id) {
         this.currentColor = color.id
         this.carouselTransitionSpeed = 0
@@ -191,8 +265,6 @@ export default {
     },
     pageChange (index) {
       this.switchCarouselSpeed()
-
-      this.currentPage = index
       this.hideImageAtIndex = null
     },
     onVideoStarted (index) {
@@ -204,100 +276,16 @@ export default {
 
 <style lang="scss" scoped>
 @import '~theme/css/animations/transitions';
- .thumb {
-    max-height: 80px;
-  }
 .media-gallery-carousel {
   position: relative;
   text-align: center;
   height: 100%;
-
-  &__thumbs{
-    list-style: none;
-    width:100%;
-    height: 100%;
-    overflow: auto;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    @media (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  &__thumb{
-    max-width: 181px;
-    height: auto;
-    width: 200px;
-    cursor: pointer;
-    position: relative;
-    @media (max-width: 1440px) {
-      width: 96px;
-     }
-     @media (max-width: 1366px) {
-      width: 92px;
-     }
-     @media (max-width: 1024px) {
-       width: 82px;
-     }
-     @media (max-width: 768px) {
-       width: 72px;
-     }
-
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 30px;
-      height: 0;
-      background-color: #98694b;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    &:hover:not(.thumb__active) {
-        &::before {
-          height: 2px;
-          background-color: #e3e3e3;
-        }
-      }
-
-    & > *{
-      opacity: 1;
-       &:hover {
-        will-change: opacity;
-        transition: .3s opacity $motion-main;
-        opacity: .4;
-      }
-    }
-  }
 }
-
-  .thumb__active {
-    & > * {
-      opacity: .4;
-      will-change: opacity;
-    }
-    
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 30px;
-      height: 2px;
-      background-color: #98694b;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
 .zoom-in {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  right: 15px;
+  z-index: 9999;
+  margin-top: -75px;
 }
 .image{
   opacity: 1;
@@ -314,19 +302,89 @@ export default {
 </style>
 
 <style lang="scss">
-// .VueCarousel-navigation-next {
-//   right: 25px !important;
-// }
-// .VueCarousel-navigation-prev {
-//   left: 25px !important;
-// }
-.thumbs-gallery-carousel {
-  .VueCarousel-inner {
-    flex-basis: auto !important;
-    //justify-content: center;
+.mainGallery-Carousel{
+  .slick-next{
+    right: -22px;
+    @media screen and (max-width:374px) {
+      right: -16px;
+    }
+    @media screen and (max-width:480px) {
+      right: -18px;
+    }
+    &:before{
+      color: transparent;
+      background: url('/assets/right-arrow-svg.svg');
+    }
+  }
+  .slick-prev{
+    &:before{
+      color: transparent;
+      background: url('/assets/left-arrow-svg.svg');
+    }
+    @media screen and (max-width:480px) {
+      left:-18px;
+    }
+  }
+  //   .slick-next{
+  //     &:before{
+  //       content:none;
+  //     }
+  //   }
+  //   .slick-prev{
+  //     &:before{
+  //       content:none;
+  //     }
+  //   }
+}
+.thumbnail-arrows{
+  padding-left: 5px;
+  @media screen and (min-width:400px)and(max-width:480px) {
+     padding-left: 10px;
+  }
+  .slick-slide{
+    img{
+      border: 1px solid #d5d5d5;
+      max-width: 90px;
+      max-height: 90px;
+      cursor: pointer;
+      @media screen and (max-width:440px) {
+         max-width: 72px;
+         max-height: 72px;
+      }
+      @media screen and (max-width:374px) {
+         max-width: 65px;
+         max-height: 65px;
+      }
+    }
+  }
+  .slick-next{
+    right: -10px;
+    @media screen and (max-width:374px) {
+      right: -16px;
+    }
+    &:before{
+      color: transparent;
+      background: url('/assets/right-arrow-svg.svg');
+    }
+  }
+  .slick-prev{
+    &:before{
+       color: transparent;
+       background: url('/assets/left-arrow-svg.svg');
+    }
+    @media screen and (max-width:480px) {
+      left:-15px;
+    }
   }
 }
-
+.ProductThumbnails{
+  .product-image{
+    img{
+      width: 92px !important;
+      height: auto;
+    }
+  }
+}
 .media-gallery-carousel,
 .media-zoom-carousel {
   .VueCarousel-pagination {
