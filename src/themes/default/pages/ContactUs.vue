@@ -47,17 +47,17 @@ export default {
 <style scoped lang="scss">
 .contact-main {
   margin-top: -15px;
+  position: relative;
 
   .head {
-    //color: #6e2138;
     margin: 0;
     padding-top: 8px;
     font-size: 44px;
-    //font-size: clamp(36px, 6.2vw, 72px);
     font-family: "Raleway";
     position: absolute;
     left: 40%;
     z-index: 1;
+    top: 65px;
     @media (max-width: 500px) {
       left: 28%;
     }
@@ -69,18 +69,10 @@ export default {
     padding: 0;
     margin: 0px;
     text-transform: uppercase;
-    //color: #6e2138;
-    // margin: 0;
-    // padding-top: 8px;
-    // font-size: 44px;
-    // //font-size: clamp(36px, 6.2vw, 72px);
-    // font-family: "Raleway";
-    // position: absolute;
-    // left: 40%;
-    // z-index: 1;
-    // @media (max-width: 500px) {
-    //   left: 28%;
-    // }
+    top: 122px;
+    position: absolute;
+    z-index: 1;
+    left: 40.3%;
   }
 
   .main-fields {
