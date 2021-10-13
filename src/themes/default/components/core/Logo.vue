@@ -39,7 +39,15 @@ export default {
 </script>
 <style scoped>
 .mainlogo{height: 100px; width: auto;}
-
+@media (max-width: 1220px) {
+  .mainlogo {width: 160px; height: auto;}
+}
+@media (min-width: 768px) and (max-width: 852px) {
+  .mainlogo {width: 145px;}
+ }
+@media (max-width: 816px) {
+  .mainlogo {width: 137px;}
+}
 @media (max-width: 768px) {
   .mainlogo{height: 50px; width: auto; margin-right: 65px;}
 }
