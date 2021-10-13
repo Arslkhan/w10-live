@@ -29,7 +29,7 @@
                 &copy;2021 The w10 collection limited
               </span>
               <router-link
-                to="/i/terms"
+                to="/i/terms-and-conditions"
                 exact
               >
                 {{ $t('TERMS & CONDITIONS ') }}
