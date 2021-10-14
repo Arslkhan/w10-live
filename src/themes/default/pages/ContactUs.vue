@@ -82,16 +82,17 @@ export default {
 
   .main-fields {
     .button-under-text {
-      color: #6d1f37;
+      //color: #6d1f37;
       font-size: 28px;
-      font-family: "Brandon_reg";
+      font-family: "Raleway";
       text-align: center;
-      font-weight: 700;
+      margin-top: 20px;
+      //font-weight: 700;
 
       a {
         color: #6d1f37;
         font-size: 28px;
-        font-family: "Brandon_reg";
+        font-family: "Raleway";
         text-align: center;
         font-weight: 700;
         text-decoration: underline;
@@ -120,7 +121,7 @@ export default {
   .message {
     color: #6d1f37;
     font-size: 24px;
-    font-family: "Brandon_reg";
+    font-family: "Raleway";
     text-align: center;
     font-weight: 700;
     padding-bottom: 10px;
@@ -227,7 +228,7 @@ export default {
     padding-bottom: 30px;
 
     p {
-      font-family: "BrandonMedium";
+      font-family: "Raleway";
       font-size: 24px;
       @media screen and (max-width: 767px) {
         font-size: 18px;
