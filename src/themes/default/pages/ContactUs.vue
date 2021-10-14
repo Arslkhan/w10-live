@@ -242,7 +242,7 @@ export default {
       }
 
       a {
-        color: #6d1f37;
+        //color: #6d1f37;
         font-family: "BrandonMedium";
         font-size: 24px;
         padding-left: 3px;

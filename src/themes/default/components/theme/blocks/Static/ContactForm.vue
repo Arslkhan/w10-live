@@ -7,7 +7,7 @@
         </p>
       </div>
       <h2 class="desktop-show">SEND A MESSAGE OR CALL US ON <a href="tel:0800 012 6406">0800 012 6406</a></h2>
-      <div v-if="!messageSent" class="container">
+      <div v-if="!messageSent" class="container contact">
         <form @submit.prevent="sendForm" novalidate>
           <div class="row">
             <base-input
@@ -252,6 +252,14 @@ $color-puerto-rico: color(puerto-rico);
   padding-bottom: 150px;
   @media (max-width: 992px) {
     padding-bottom: 120px;
+  }
+  .contact-form__container {
+    @media (max-width: 767px) {
+      margin-top: 68%;
+    }
+  }
+  .contact {
+    margin-top: 10%
   }
   .desktop-show {
     display: block;
