@@ -277,11 +277,11 @@ $color-puerto-rico: color(puerto-rico);
       //font-weight: 700;
 
       a {
-        color: #6d1f37;
+        //color: #6d1f37;
         font-size: 28px;
         font-family: "Raleway";
         text-align: center;
-        font-weight: 700;
+        //font-weight: 700;
         text-decoration: underline;
       }
     }
