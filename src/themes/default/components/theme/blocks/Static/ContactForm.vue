@@ -6,7 +6,7 @@
           RETURNS? PLEASE REFER TO OUR <a style="font-weight: 800; text-decoration: underline;" href="/i/returns">RETURNS POLICY PAGE</a>
         </p>
       </div>
-      <h2>SEND A MESSAGE OR CALL US ON <a href="tel:0800 012 6406">0800 012 6406</a></h2>
+      <h2 class="desktop-show">SEND A MESSAGE OR CALL US ON <a href="tel:0800 012 6406">0800 012 6406</a></h2>
       <div v-if="!messageSent" class="container">
         <form @submit.prevent="sendForm" novalidate>
           <div class="row">
@@ -252,6 +252,12 @@ $color-puerto-rico: color(puerto-rico);
   padding-bottom: 150px;
   @media (max-width: 992px) {
     padding-bottom: 120px;
+  }
+  .desktop-show {
+    display: block;
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
   .main-fields {
     .button-under-text {

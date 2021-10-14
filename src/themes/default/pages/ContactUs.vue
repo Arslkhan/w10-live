@@ -60,11 +60,12 @@ export default {
     top: 65px;
     @media (max-width: 500px) {
       left: 28%;
+      top: 50px;
     }
   }
   .title-desktop {
     display: none;
-    font-size: 30px;
+    font-size: 30px !important;
     font-family: 'Raleway';
     @media (max-width: 767px) {
       display: block;
@@ -93,7 +94,7 @@ export default {
       //font-weight: 700;
 
       a {
-        color: #6d1f37;
+        //color: #6d1f37;
         font-size: 28px;
         font-family: "Raleway";
         text-align: center;
