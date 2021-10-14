@@ -14,6 +14,11 @@
       <img src="/assets/hero1.jpg" alt="contact-us" class="Desktop-banner" />
       <img src="/assets/backimg.jpg" alt="contact-us" class="mobile-banner">
     </p>
+    <div class="main-fields">
+      <p class="button-under-text" style="font-size: 28px; text-align: center;">
+        RETURNS? PLEASE REFER TO OUR <a style="font-weight: 800; text-decoration: underline;" href="/i/returns">RETURNS POLICY PAGE</a>
+      </p>
+    </div>
     <contact-form />
     <social-area />
   </div>
