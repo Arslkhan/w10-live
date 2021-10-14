@@ -100,7 +100,7 @@
 
             <img class="stripe-icon mr-2" src="https://secure.w10.world/pub/static/version1598452708/frontend/origin/w10/en_GB/StripeIntegration_Payments/img/cards/visa.svg" width="50" alt="visa">
 
-            <img class="stripe-icon" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-medium.png" width="50" alt="paypal">
+            <img class="stripe-icon" src="assets/payment-icons.svg" width="50" alt="paypal">
           </div>
         </div>
       </div>
