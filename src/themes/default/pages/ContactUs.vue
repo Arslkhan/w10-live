@@ -60,15 +60,14 @@ export default {
     top: 65px;
     @media (max-width: 500px) {
       left: 28%;
-      top: 48px;
     }
   }
   .title-desktop {
-    display: block;
+    display: none;
     font-size: 30px;
     font-family: 'Raleway';
     @media (max-width: 767px) {
-      display: none;
+      display: block;
     }
   }
   .head-small {
@@ -114,12 +113,14 @@ export default {
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
+      @media (max-width: 767px) {
+        top: 135%;
+      }
     }
     padding-bottom: 27%;
     position: relative;
     @media (max-width: 767px) {
       padding-bottom: 30.5%;
-      top: 135%;
     }
   }
 
