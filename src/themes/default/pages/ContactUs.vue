@@ -8,8 +8,9 @@
     <!--        <p>get in touch</p>-->
     <!--      </div>-->
     <!--    </header>-->
-    <p class="head">Contact</p>
-    <p class="head-small">get in touch</p>
+    <p class="head title-desktop">Contact Us</p>
+    <p class="head title-touch">Contact</p>
+    <p class="head-small title-touch">get in touch</p>
     <p class="contactUsP">
       <img src="/assets/hero1.jpg" alt="contact-us" class="Desktop-banner" />
       <img src="/assets/backimg.jpg" alt="contact-us" class="mobile-banner">
@@ -53,7 +54,9 @@ export default {
 .contact-main {
   margin-top: -15px;
   position: relative;
-
+  .title-desktop {
+    display: none;
+  }
   .head {
     margin: 0;
     padding-top: 8px;
@@ -251,6 +254,11 @@ export default {
         content: none;
       }
     }
+  }
+}
+@media screen and (max-width: 767px) {
+  .title-touch {
+    display: none;
   }
 }
 @media (min-width: 768px) {
