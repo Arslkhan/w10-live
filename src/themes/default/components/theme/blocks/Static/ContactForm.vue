@@ -277,7 +277,7 @@ $color-puerto-rico: color(puerto-rico);
       //font-weight: 700;
 
       a {
-        //color: #6d1f37;
+        color: #98694B;
         font-size: 28px;
         font-family: "Raleway";
         text-align: center;
