@@ -12,7 +12,7 @@
     <p class="head-small">get in touch</p>
     <p class="contactUsP">
       <img src="/assets/hero1.jpg" alt="contact-us" class="Desktop-banner" />
-      <!--      <img src="/assets/contact-mobile.png" alt="contact-us" class="mobile-banner">-->
+      <img src="/assets/backimg.jpg" alt="contact-us" class="mobile-banner">
     </p>
     <contact-form />
     <social-area />
