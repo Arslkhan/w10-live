@@ -15,11 +15,6 @@
       <img src="/assets/hero1.jpg" alt="contact-us" class="Desktop-banner" />
       <img src="/assets/backimg.jpg" alt="contact-us" class="mobile-banner">
     </p>
-    <div class="main-fields">
-      <p class="button-under-text" style="font-size: 28px; text-align: center;">
-        RETURNS? PLEASE REFER TO OUR <a style="font-weight: 800; text-decoration: underline;" href="/i/returns">RETURNS POLICY PAGE</a>
-      </p>
-    </div>
     <contact-form />
     <social-area />
   </div>
@@ -54,9 +49,6 @@ export default {
 .contact-main {
   margin-top: -15px;
   position: relative;
-  .title-desktop {
-    display: none;
-  }
   .head {
     margin: 0;
     padding-top: 8px;
@@ -68,6 +60,15 @@ export default {
     top: 65px;
     @media (max-width: 500px) {
       left: 28%;
+      top: 48px;
+    }
+  }
+  .title-desktop {
+    display: block;
+    font-size: 30px;
+    font-family: 'Raleway';
+    @media (max-width: 767px) {
+      display: none;
     }
   }
   .head-small {
@@ -118,6 +119,7 @@ export default {
     position: relative;
     @media (max-width: 767px) {
       padding-bottom: 30.5%;
+      top: 135%;
     }
   }
 
