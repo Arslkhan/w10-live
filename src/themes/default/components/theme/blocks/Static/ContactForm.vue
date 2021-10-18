@@ -237,10 +237,10 @@ export default {
           comment: this.message,
           telephone: this.phone,
         };
-        this.sendEmail(data, this.onSuccess, this.onFailure);
+        this.sendEmailNew(data, this.onSuccess, this.onFailure);
       }
     },
-    sendEmail(letter, success, failure) {
+    sendEmailNew(letter, success, failure) {
       this.$store
         .dispatch("mailer/sendEmail", letter)
         .then((res) => {
