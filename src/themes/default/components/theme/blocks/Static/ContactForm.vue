@@ -1,7 +1,10 @@
 <template>
   <div class="contact-form">
     <div class="contact-form__container">
-      <h2>SEND A MESSAGE OR CALL US ON <a href="tel:0800 012 6406">0800 012 6406</a></h2>
+      <h2>
+        SEND A MESSAGE OR CALL US ON
+        <a href="tel:0800 012 6406">0800 012 6406</a>
+      </h2>
       <div v-if="!messageSent" class="container">
         <form @submit.prevent="sendForm" novalidate>
           <div class="row">
@@ -15,13 +18,15 @@
               @input="$v.currentUser.firstname.$touch()"
               :validations="[
                 {
-                  condition: !$v.currentUser.firstname.required && $v.currentUser.firstname.$error,
-                  text: $t('Field is required')
+                  condition:
+                    !$v.currentUser.firstname.required &&
+                    $v.currentUser.firstname.$error,
+                  text: $t('Field is required'),
                 },
                 {
                   condition: !$v.currentUser.firstname.minLength,
-                  text: $t('Name must have at least 2 letters.')
-                }
+                  text: $t('Name must have at least 2 letters.'),
+                },
               ]"
             />
             <base-input
@@ -41,13 +46,15 @@
               v-model="currentUser.email"
               :validations="[
                 {
-                  condition: !$v.currentUser.email.required && $v.currentUser.email.$error,
-                  text: $t('Field is required')
+                  condition:
+                    !$v.currentUser.email.required &&
+                    $v.currentUser.email.$error,
+                  text: $t('Field is required'),
                 },
                 {
                   condition: !$v.currentUser.email.email,
-                  text: $t('Please provide valid e-mail address.')
-                }
+                  text: $t('Please provide valid e-mail address.'),
+                },
               ]"
             />
             <base-input
@@ -73,19 +80,19 @@
               :validations="[
                 {
                   condition: !$v.message.required && $v.message.$error,
-                  text: $t('Field is required')
+                  text: $t('Field is required'),
                 },
                 {
                   condition: !$v.message.minLength,
-                  text: $t('Message must have at least 10 letters.')
-                }
+                  text: $t('Message must have at least 10 letters.'),
+                },
               ]"
             />
           </div>
           <div class="row">
             <div class="col-xs-12 col-sm-4 col-sm-offset-4 center-xs mt35">
               <button-full class="inline-flex" type="submit">
-                {{ $t('Send Message') }}
+                {{ $t("Send Message") }}
               </button-full>
             </div>
           </div>
@@ -94,8 +101,21 @@
       <div v-else class="container">
         <div class="row">
           <div class="col-xs-12 confirmation">
-            <h3 class="py15 px10 my40 weight-600 flex cl-white bg-cl-puerto-rico brdr-rad"><i class="material-icons">check_circle_outline</i>
-              {{ $t('Your message has successfully been sent.') }}</h3>
+            <h3
+              class="
+                py15
+                px10
+                my40
+                weight-600
+                flex
+                cl-white
+                bg-cl-puerto-rico
+                brdr-rad
+              "
+            >
+              <i class="material-icons">check_circle_outline</i>
+              {{ $t("Your message has successfully been sent.") }}
+            </h3>
             <!-- <router-link :to="localizedRoute('/')" :title="$t('Home')" class="no-underline inline-flex">{{ $t('Home') }}</router-link> -->
           </div>
         </div>
@@ -104,138 +124,163 @@
   </div>
 </template>
 <script>
-import i18n from '@vue-storefront/i18n'
-import { required, minLength, email } from 'vuelidate/lib/validators'
-import MyProfile from '@vue-storefront/core/compatibility/components/blocks/MyAccount/MyProfile'
-import { unicodeAlpha, unicodeAlphaNum } from '@vue-storefront/core/helpers/validators'
-import Breadcrumbs from 'theme/components/core/Breadcrumbs'
-import BaseInput from 'theme/components/core/blocks/Form/BaseInput'
-import BaseSelect from 'theme/components/core/blocks/Form/BaseSelect'
-import ButtonFull from 'theme/components/theme/ButtonFull.vue'
-import BaseTextarea from 'theme/components/core/blocks/Form/BaseTextarea'
-import { EmailForm } from '@vue-storefront/core/modules/mailer/components/EmailForm'
-import { isServer } from '@vue-storefront/core/helpers'
-import config from 'config'
-import { registerModule } from '@vue-storefront/core/lib/modules'
-import { MailerModule } from '@vue-storefront/core/modules/mailer'
+import i18n from "@vue-storefront/i18n";
+import { required, minLength, email } from "vuelidate/lib/validators";
+import MyProfile from "@vue-storefront/core/compatibility/components/blocks/MyAccount/MyProfile";
+import {
+  unicodeAlpha,
+  unicodeAlphaNum,
+} from "@vue-storefront/core/helpers/validators";
+import Breadcrumbs from "theme/components/core/Breadcrumbs";
+import BaseInput from "theme/components/core/blocks/Form/BaseInput";
+import BaseSelect from "theme/components/core/blocks/Form/BaseSelect";
+import ButtonFull from "theme/components/theme/ButtonFull.vue";
+import BaseTextarea from "theme/components/core/blocks/Form/BaseTextarea";
+import { EmailForm } from "@vue-storefront/core/modules/mailer/components/EmailForm";
+import { isServer } from "@vue-storefront/core/helpers";
+import config from "config";
+import { registerModule } from "@vue-storefront/core/lib/modules";
+import { MailerModule } from "@vue-storefront/core/modules/mailer";
 
 export default {
-  name: 'ContactForm',
+  name: "ContactForm",
   components: {
     Breadcrumbs,
     BaseInput,
     BaseSelect,
     ButtonFull,
-    BaseTextarea
+    BaseTextarea,
   },
   mixins: [MyProfile, EmailForm],
-  beforeCreate () {
-    registerModule(MailerModule)
+  beforeCreate() {
+    registerModule(MailerModule);
   },
-  data () {
+  data() {
     return {
-      phone: '',
-      subject: '',
-      message: '',
+      phone: "",
+      subject: "",
+      message: "",
       messageSent: false,
       baseUrl: config.images.paths.upload,
-      timestamp: Date.now()
-    }
+      timestamp: Date.now(),
+    };
   },
   computed: {
-    mailerElements () {
-      return config.mailer.contactAddress
+    mailerElements() {
+      return config.mailer.contactAddress;
     },
-    contactFormEmailAddress () {
-      return config.mailer.generalForm
+    contactFormEmailAddress() {
+      return config.mailer.generalForm;
     },
-    contactFormSubject () {
-      return 'General Inquiries'
+    contactFormSubject() {
+      return "General Inquiries";
     },
-    formBodyText () {
-      let html = '';
-      html += 'Name: ' + this.currentUser.firstname + ' ' + this.currentUser.lastname + '\r\n\r\n'
-      html += 'Email Address: ' + this.currentUser.email + '\r\n\r\n'
+    formBodyText() {
+      let html = "";
+      html +=
+        "Name: " +
+        this.currentUser.firstname +
+        " " +
+        this.currentUser.lastname +
+        "\r\n\r\n";
+      html += "Email Address: " + this.currentUser.email + "\r\n\r\n";
       if (this.phone) {
-        html += 'Phone Number: ' + this.phone + '\r\n\r\n'
+        html += "Phone Number: " + this.phone + "\r\n\r\n";
       }
       if (this.subject) {
-        html += 'Subject: ' + this.subject + '\r\n\r\n'
+        html += "Subject: " + this.subject + "\r\n\r\n";
       }
-      html += 'Message: ' + this.message + '\r\n\r\n'
-      return html
-    }
+      html += "Message: " + this.message + "\r\n\r\n";
+      return html;
+    },
   },
   validations: {
     message: {
       required,
       minLength: minLength(10),
-      unicodeAlpha
+      unicodeAlpha,
     },
     currentUser: {
       firstname: {
         required,
         minLength: minLength(2),
-        unicodeAlpha
+        unicodeAlpha,
       },
       email: {
         required,
-        email
-      }
-    }
+        email,
+      },
+    },
   },
   methods: {
-    sendForm () {
+    sendForm() {
       if (this.$v.$invalid) {
-        this.$v.$touch()
+        this.$v.$touch();
       } else {
         let data = {
           name: this.currentUser.firstname,
           lastname: this.currentUser.lastName,
           email: this.currentUser.email,
           comment: this.message,
-          telephone: this.phone
+          telephone: this.phone,
         };
-        this.sendEmail(
-          data,
-          this.onSuccess,
-          this.onFailure
-        )
+        this.sendEmail(data, this.onSuccess, this.onFailure);
       }
     },
-    onSuccess (message) {
-      this.messageSent = true
+    sendEmail(letter, success, failure) {
+      this.$store
+        .dispatch("mailer/sendEmail", letter)
+        .then((res) => {
+          console.log("sendEmail res", res);
+          if (res.ok) {
+            if (success) success(i18n.t("Email has successfully been sent"));
+          } else {
+            return res.json();
+          }
+        })
+        .then((errorResponse) => {
+          if (errorResponse) {
+            const errorMessage = errorResponse.result;
+            if (failure) failure(i18n.t(errorMessage));
+          }
+        })
+        .catch(() => {
+          if (failure)
+            failure(i18n.t("Could not send an email. Please try again later."));
+        });
+    },
+    onSuccess(message) {
+      this.messageSent = true;
       // window.scrollTo(0,0);
 
       if (config.mailer.sendConfirmation) {
-        let confirmationHtml = '';
-        confirmationHtml += 'Dear customer,\r\n\r\n'
-        confirmationHtml += 'We have received your request.\r\n\r\n'
-        confirmationHtml += 'Thank you!'
+        let confirmationHtml = "";
+        confirmationHtml += "Dear customer,\r\n\r\n";
+        confirmationHtml += "We have received your request.\r\n\r\n";
+        confirmationHtml += "Thank you!";
 
-        this.sendEmail(
-          {
-            sourceAddress: this.mailerElements,
-            targetAddress: this.currentUser.email,
-            subject: this.$t('Confirmation of receival'),
-            emailText: confirmationHtml,
-            confirmation: true
-          })
+        this.sendEmail({
+          sourceAddress: this.mailerElements,
+          targetAddress: this.currentUser.email,
+          subject: this.$t("Confirmation of receival"),
+          emailText: confirmationHtml,
+          confirmation: true,
+        });
       }
     },
-    onFailure (message) {
-      this.$store.dispatch('notification/spawnNotification', {
-        type: 'error',
+    onFailure(message) {
+      this.$store.dispatch("notification/spawnNotification", {
+        type: "error",
         message,
-        action1: { label: this.$t('OK') }
-      })
-    }
-  }
-}
+        action1: { label: this.$t("OK") },
+      });
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
-@import '~theme/css/variables/colors';
-@import '~theme/css/helpers/functions/color';
+@import "~theme/css/variables/colors";
+@import "~theme/css/helpers/functions/color";
 
 $grayish-blue: color(grayish-blue);
 $text: color(text);
