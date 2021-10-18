@@ -1,11 +1,24 @@
 <template>
   <div class="contact-form">
     <div class="contact-form__container">
-      <h2>
+      <div class="main-fields">
+        <p
+          class="button-under-text"
+          style="font-size: 28px; text-align: center"
+        >
+          RETURNS? PLEASE REFER TO OUR
+          <a
+            style="font-weight: 800; text-decoration: underline"
+            href="/i/returns"
+            >RETURNS POLICY PAGE</a
+          >
+        </p>
+      </div>
+      <h2 class="desktop-show">
         SEND A MESSAGE OR CALL US ON
         <a href="tel:0800 012 6406">0800 012 6406</a>
       </h2>
-      <div v-if="!messageSent" class="container">
+      <div v-if="!messageSent" class="container contact">
         <form @submit.prevent="sendForm" novalidate>
           <div class="row">
             <base-input
@@ -293,7 +306,39 @@ $color-puerto-rico: color(puerto-rico);
   @media (max-width: 992px) {
     padding-bottom: 120px;
   }
+  .contact-form__container {
+    @media (max-width: 767px) {
+      margin-top: 68%;
+    }
+  }
+  .contact {
+    margin-top: 10%;
+  }
+  .desktop-show {
+    display: block;
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+  .main-fields {
+    .button-under-text {
+      //color: #6d1f37;
+      font-size: 28px;
+      font-family: "Raleway";
+      text-align: center;
+      margin-top: 20px;
+      //font-weight: 700;
 
+      a {
+        color: #98694b;
+        font-size: 28px;
+        font-family: "Raleway";
+        text-align: center;
+        //font-weight: 700;
+        text-decoration: underline;
+      }
+    }
+  }
   h2 {
     font-size: 28px;
     position: relative;

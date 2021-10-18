@@ -39,11 +39,11 @@
               <span class="w10-limited">
                 &copy;2021 The w10 collection limited
               </span>
-              <router-link to="/i/terms" exact>
+              <router-link to="/i/terms-and-conditions" exact>
                 {{ $t("TERMS & CONDITIONS ") }}
               </router-link>
               <!-- <span>|</span> -->
-              <router-link to="/i/privacy" exact>
+              <router-link to="/i/privacy-policy" exact>
                 {{ $t("PRIVACY POLICY") }}
               </router-link>
               <!-- <span>|</span> -->
@@ -56,7 +56,7 @@
               </router-link>
               <!-- <span>|</span> -->
               <a class="return" href="https://costacoffee.w10.world/">
-                Costa CoffeeRange
+                Costa Coffee Range
               </a>
             </div>
             <div class="social-icons">

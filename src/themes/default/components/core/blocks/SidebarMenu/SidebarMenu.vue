@@ -144,8 +144,8 @@
             </a>
           </li>
           <li class="brdr-bottom-1 brdr-cl-bg-secondary flex lastimg">
-            <a href="http://costa.w10.world/" class="px25 py20 cl-accent no-underline col-xs">
-              <img src="/assets/Costa coffee logo.png" alt="">
+            <a href="https://costacoffee.w10.world/" class="px25 py20 cl-accent no-underline col-xs">
+              <img src="/assets/Costa coffee logo.svg" alt="" class="logoImage">
             </a>
           </li>
         </ul>

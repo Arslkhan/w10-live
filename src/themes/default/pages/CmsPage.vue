@@ -1,14 +1,5 @@
 <template>
   <div id="cms-page">
-<!--    <header class="bg-cl-secondary py25">-->
-<!--      <div class="container">-->
-<!--        <div class="row middle-sm">-->
-<!--          <h1 class="col-sm-9 category-title">-->
-<!--            {{ cmsPageContent.title }}-->
-<!--          </h1>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </header>-->
     <div class="container pb60" v-html="cmsPageContent.content" />
   </div>
 </template>
@@ -28,6 +19,9 @@ export default {
 
 <style lang="scss" >
 #cms-page {
+  img {
+    width: 100%;
+  }
  .main-returns{
    h4, .days-year{
      font-weight: 700;
