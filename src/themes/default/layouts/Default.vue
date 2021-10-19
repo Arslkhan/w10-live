@@ -2,7 +2,7 @@
   <div class="default-layout">
     <overlay v-if="overlayActive" />
     <div v-if="currPath && currPath === '/'" class="overlayHome">
-      <homeOverlay />
+      <HomeOverlay />
     </div>
     <loader />
     <div id="viewport" class="w-100 relative">
