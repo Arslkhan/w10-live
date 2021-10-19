@@ -184,7 +184,7 @@ export default {
   right: 0;
   height: 100%;
   width: 100%;
-  opacity: 0.96;
+  opacity: 2;
   background-color: #000000;
   z-index: 4;
 }
