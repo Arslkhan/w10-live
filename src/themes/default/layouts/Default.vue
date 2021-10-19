@@ -2,7 +2,7 @@
   <div class="default-layout">
     <overlay v-if="overlayActive" />
     <div v-if="currPath && currPath === '/'" class="overlayHome">
-      <HomeOverlay />
+      <homeOverlay />
     </div>
     <loader />
     <div id="viewport" class="w-100 relative">
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import HomeOverlay from "theme/components/core/HomeOverlay.vue";
+import homeOverlay from "theme/components/core/homeOverlay.vue";
 import { mapState } from "vuex";
 import AsyncSidebar from "theme/components/theme/blocks/AsyncSidebar/AsyncSidebar.vue";
 import MainHeader from "theme/components/core/blocks/Header/Header.vue";
