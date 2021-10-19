@@ -169,6 +169,7 @@ export default {
     OfflineBadge,
     OrderConfirmation,
     AsyncSidebar,
+    homeOverlay,
   },
 };
 </script>
