@@ -4,7 +4,7 @@
       <a class="website-Link" href="https://w10.world/our-range.html"
         >Visit W10 Drinkware Collection</a
       >
-      <img class="w10Logo" src="/assets/w10Logo.svg" />
+      <img class="w10Logo" src="/assets/W10_Logo_new.png" />
     </div>
     <div class="center-Content overlay-Right">
       <a class="website-Link" href="http://costacoffee.w10.world/"
