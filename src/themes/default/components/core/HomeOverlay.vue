@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="center-Content overlay-Left">
-      <a class="website-Link" href="https://w10.world/"
+      <a class="website-Link" href="https://w10.world/our-range.html"
         >Visit W10 Drinkware Collection</a
       >
       <img class="w10Logo" src="/assets/w10Logo.svg" />
