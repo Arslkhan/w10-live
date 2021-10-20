@@ -237,14 +237,15 @@ export default {
           comment: this.message,
           telephone: this.phone,
         };
+        console.log('this the data', data)
         this.sendEmailNew(data, this.onSuccess, this.onFailure);
       }
     },
     sendEmailNew(letter, success, failure) {
       this.$store
-        .dispatch("mailer/sendEmail", letter)
+        .dispatch('mailer/sendEmail', letter)
         .then((res) => {
-          console.log("sendEmail res", res);
+          console.log('sendEmail res', res);
           if (res.ok) {
             if (success) success(i18n.t("Email has successfully been sent"));
           } else {
