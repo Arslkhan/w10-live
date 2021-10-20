@@ -232,7 +232,7 @@ export default {
       } else {
         let data = {
           name: this.currentUser.firstname,
-          lastname: this.currentUser.lastName,
+          lastname: this.currentUser.lastname,
           email: this.currentUser.email,
           comment: this.message,
           telephone: this.phone,
