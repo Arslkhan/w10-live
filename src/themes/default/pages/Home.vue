@@ -78,12 +78,18 @@ import { mapGetters } from 'vuex'
 import config from 'config'
 import { registerModule } from '@vue-storefront/core/lib/modules'
 import { RecentlyViewedModule } from '@vue-storefront/core/modules/recently-viewed'
+import { MeasureProductClick } from 'src/modules/google-gtag/mixins/MeasureProductClick'
 import Modal from 'theme/components/core/Modal'
 
 export default {
+  name: 'HomePage',
   data () {
     return {
       loading: true,
+      pageTitle: {
+        title: '',
+        titleTemplate: 'W10 Collapsible Cup and Eco-Friendly Drinkware'
+      },
       config: {
         perPageCustom: [[320,2], [768,2], [1024,3], [1366,4]],
         paginationEnabled: false,
@@ -145,7 +151,9 @@ export default {
       }
     }
   },
+  mixins: [MeasureProductClick],
   mounted () {
+    this.sendHomeClick({ metaInfo: { ...this.pageTitle }, path: this.$route.path, fullPath: this.$route.fullPath });
     this.showWelcome();
     if (!this.isLoggedIn && localStorage.getItem('redirect')) this.$bus.$emit('modal-show', 'modal-signup')
   },

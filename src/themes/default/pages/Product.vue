@@ -206,6 +206,7 @@ import AboutProduct from 'theme/components/theme/blocks/Home/AboutProduct'
 import VideoPlayer from 'theme/components/theme/blocks/Home/VideoPlayer2'
 
 export default {
+  name: 'ProductPage',
   components: {
     AddToCart,
     AddToCompare,
@@ -324,7 +325,7 @@ export default {
     let primaryCategory = this.getProductPrimaryCategory()
     this.$store.commit('google-gtag/SET_PRODUCT_CURRENT', {
       product: this.getCurrentProduct,
-      category: primaryCategory?.[ 0 ]?.name
+      category: primaryCategory?.name
     })
   },
   async asyncData ({ store, route, context }) {
@@ -369,19 +370,19 @@ export default {
       }
       this.$store.commit('google-gtag/SET_PRODUCT_CLICK', productPayload)
     },
+    /**
+     *
+     * @returns {boolean|{category_id,name,position}}
+     */
     getProductPrimaryCategory () {
       if (
         this.getCurrentProduct &&
         typeof this.getCurrentProduct !== 'undefined' &&
         this.getCurrentProduct.category &&
         typeof this.getCurrentProduct.category !== 'undefined' &&
-        this.getCurrentProduct.primary_category
+        Array.isArray(this.getCurrentProduct.category) && this.getCurrentProduct.category.length > 0
       ) {
-        if (typeof this.getCurrentProduct.category === 'object') {
-          return Object.keys(this.getCurrentProduct.category).filter(c => {
-            return parseInt(this.getCurrentProduct.category[ c ].category_id) === parseInt(this.getCurrentProduct.primary_category)
-          }).map(c => ({ ...this.getCurrentProduct.category[ c ] }))
-        }
+        return this.getCurrentProduct.category[this.getCurrentProduct.category.length - 1]
       }
       return false
     },

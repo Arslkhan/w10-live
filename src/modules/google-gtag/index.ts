@@ -277,6 +277,7 @@ export const GoogleGtagModule: StorefrontModule = function ({ store, router, app
       }
 
       if (type === 'google-gtag/SET_PRODUCT_CURRENT') {
+        console.log('google-gtag/SET_PRODUCT_CURRENT', payload);
         let productAttribute = (appConfig.googleTagManager && appConfig.googleTagManager.product_id_to_use) ? appConfig.googleTagManager.product_id_to_use : 'sku'
         // console.log('fetchedPayloadIs', payload);
         GTAG.event('dynProd', {
@@ -306,19 +307,7 @@ export const GoogleGtagModule: StorefrontModule = function ({ store, router, app
 
       // Measuring Views of Other Clicks
       if (type === 'google-gtag/SET_HOME_CLICK') {
-        console.log('dynHome')
-        // let { metaInfo, path, fullPath } = payload
-        // if (metaInfo) {
-        //   // console.log('metaInfo', metaInfo);
-        //   GTAG.pageview({
-        //     /* The page's title. */
-        //     page_title: metaInfo?.title || metaInfo?.titleTemplate,
-        //     /* The page's URL. */
-        //     page_path: path,
-        //     /* The path portion of location. This value must start with a slash (/) character. */
-        //     page_location: fullPath
-        //   })
-        // }
+        console.log('dynHome');
         GTAG.event('dynHome', {
           'ecomm_pagetype': 'home',
           'non_interaction': true
