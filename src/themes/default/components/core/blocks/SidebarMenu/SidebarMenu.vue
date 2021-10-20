@@ -66,9 +66,8 @@
             />
           </li>
 
-            <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
-
-             <router-link
+          <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
+            <router-link
               class="px25 py20 cl-accent no-underline col-xs"
               :to="localizedRoute('/our-range.html')"
               exact
@@ -76,11 +75,20 @@
             >
               Our Range
             </router-link>
+          </li>
 
-            </li>
-            <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
-
-             <router-link
+          <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
+            <router-link
+              class="px25 py20 cl-accent no-underline col-xs"
+              :to="localizedRoute('/faq')"
+              exact
+              @click.native="closeMenu"
+            >
+              FAQ
+            </router-link>
+          </li>
+          <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
+            <router-link
               class="px25 py20 cl-accent no-underline col-xs"
               :to="localizedRoute('/innovation')"
               exact
@@ -88,10 +96,9 @@
             >
               Innovation
             </router-link>
-
-             </li>
-             <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
-          <router-link
+          </li>
+          <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
+            <router-link
               class="px25 py20 cl-accent no-underline col-xs"
               :to="localizedRoute('/about-us')"
               exact
@@ -100,9 +107,8 @@
               About us
             </router-link>
           </li>
-             <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
-
-             <router-link
+          <li class="brdr-bottom-1 brdr-cl-bg-secondary flex">
+            <router-link
               class="px25 py20 cl-accent no-underline col-xs"
               :to="localizedRoute('/contact-us')"
               exact
@@ -110,7 +116,7 @@
             >
               Contact Us
             </router-link>
-            </li>
+          </li>
           <li
             @click="login"
             class="brdr-bottom-1 brdr-cl-secondary flex"
@@ -135,6 +141,11 @@
               class="px25 py20 cl-accent no-underline col-xs"
             >
               {{ $t('My Account') }}
+            </a>
+          </li>
+          <li class="brdr-bottom-1 brdr-cl-bg-secondary flex lastimg">
+            <a href="https://costacoffee.w10.world/" class="px25 py20 cl-accent no-underline col-xs">
+              <img src="/assets/Costa coffee logo.svg" alt="" class="logoImage">
             </a>
           </li>
         </ul>
@@ -299,5 +310,10 @@ $color-mine-shaft: color(mine-shaft);
     }
   }
 
+}
+@media (max-width: 768px) {
+  .lastimg {
+    background-color: #6E2138;
+  }
 }
 </style>
