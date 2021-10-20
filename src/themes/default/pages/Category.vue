@@ -34,9 +34,9 @@
             </p>
           </div>
           <lazy-hydrate :trigger-hydration="!loading" v-if="isLazyHydrateEnabled">
-            <product-listing :columns="defaultColumn" :products="this.getCategoryProducts"/>
+            <product-listing :columns="defaultColumn" :products="getCategoryProducts"/>
           </lazy-hydrate>
-          <product-listing v-else :columns="defaultColumn" :products="this.getCategoryProducts"/>
+          <product-listing v-else :columns="defaultColumn" :products="getCategoryProducts"/>
         </div>
       </div>
     </div>
@@ -116,13 +116,12 @@ export default {
       return this.getCategoryProductsTotal === 0
     }
   },
-  mounted () {
-    // ForGtag
-    if (!isServer) {
-      // this.sendCategoryView();
-      this.setGtagProductsList({ isListingProducts: true, products: this.getCategoryProducts }, 'fromMounted')
+  watch: {
+    getCategoryProducts (to, from) {
+      if (to && Array.isArray(to) && to.length > 0 && to !== from) {
+        this.setGtagProductsList({ isListingProducts: true, products: this.getCategoryProducts }, 'fromMounted')
+      }
     }
-    this.sendCategoryView()
   },
   async asyncData ({ store, route, context }) { // this is for SSR purposes to prefetch data - and it's always executed before parent component methods
     if (context) context.output.cacheTags.add('category')
@@ -148,16 +147,6 @@ export default {
     }
   },
   methods: {
-    setGtagProductsList () {
-      console.log('setGtagProductsList google-gtag/SET_PRODUCT_LIST');
-      this.$store.commit('google-gtag/SET_PRODUCT_LIST', {
-        products: this.getCategoryProducts,
-        list: 'Category',
-        label: 'Category: ' + this.getCurrentCategory.name,
-        catName: this.getCurrentCategory.name,
-        category: this.list
-      })
-    },
     openFilters () {
       this.mobileFilters = true
     },
