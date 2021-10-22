@@ -202,7 +202,7 @@ export const GoogleGtagModule: StorefrontModule = function ({ store, router, app
           'ecomm_pvalue': productsAllVal,
           'transaction_id': orderId,
           'affiliation': 'W10 Live',
-          'value': ((payload.order && payload.order.grandtotal) ? +(parseFloat(payload.order.grandtotal).toFixed(2)) : 0.00),
+          'value': (payload.subTotal || 0.00),
           // 'value': order ? order.total_due : platformTotals && platformTotals.base_grand_total ? platformTotals.base_grand_total : '',
           'currency': 'GBP',
           'tax': order ? order.total_due : platformTotals && platformTotals.base_tax_amount ? platformTotals.base_tax_amount : '',
