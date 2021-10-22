@@ -185,11 +185,11 @@ export const GoogleGtagModule: StorefrontModule = function ({ store, router, app
       // SET_SUCCESS_PURCHASE
       if (type === 'google-gtag/SET_SUCCESS_PURCHASE') {
         console.log('afer mutation detect')
-        const orderId = payload.confirmation.orderNumber
+        const orderId = payload.orderId || payload.confirmation.orderNumber
         const orderHistory = state.user.orders_history
         const order = orderHistory ? orderHistory.items.find((order) => order['entity_id'].toString() === orderId) : null
         const platformTotals = state.cart.platformTotals
-        const products = await mapTransactionProductsToGtag(payload.order.products, store)
+        const products = await mapTransactionProductsToGtag((payload.products || payload.order.products), store)
         let productsAllPurchaseId = Object.keys(products).map(key => products[key].id)
         const productsAllNames = Object.keys(products).map(k => products[k].name)
         const productsAllVal = Object.keys(products).map(k => +(parseFloat(products[k].price).toFixed(2)))
