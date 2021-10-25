@@ -88,11 +88,11 @@ export default {
     } catch (error) {
       console.log(error);
     }
-
+    console.log('orderedDetails', this.orderedDetails);
     this.$store.commit('google-gtag/SET_SUCCESS_PURCHASE', {
       orderId: this.$route?.params?.orderId,
       products: this.orderedDetails.order.products,
-      subTotal: this.orderedDetails.order.subTotal
+      subTotal: this.subTotal
     })
 
     this.$gtm.trackEvent({
