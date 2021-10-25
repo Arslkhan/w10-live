@@ -193,7 +193,7 @@ export const GoogleGtagModule: StorefrontModule = function ({ store, router, app
         let productsAllPurchaseId = Object.keys(products).map(key => products[key].id)
         const productsAllNames = Object.keys(products).map(k => products[k].name)
         const productsAllVal = Object.keys(products).map(k => +(parseFloat(products[k].price).toFixed(2)))
-        console.log('afer var init')
+        console.log('after var init', payload.subTotal)
         let purchaseEventObj = {
           'ecomm_pagetype': 'purchase',
           'ecomm_prodid': productsAllPurchaseId,
