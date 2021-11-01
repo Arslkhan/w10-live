@@ -11,7 +11,9 @@
       </option>
       <option v-for="variant in sortingVariants" :value="variant" :key="variant.id">
         <template v-if="variant.label === 'Latest'">{{ $t('Default') }}</template>
-        <tamplate v-else>{{ $t(variant.label) }}</tamplate>
+        <template v-else>
+          {{ $t(variant.label) }}
+        </template>
       </option>
     </select>
   </div>

@@ -58,7 +58,8 @@ export default {
     return {
       dataLoaded: true,
       executedOnce: false,
-      subTotal: 0
+      subTotal: 0,
+      orderedDetails: null
     }
   },
   async mounted () {
@@ -79,6 +80,7 @@ export default {
       );
       const jsonRes = await response.json();
       console.log('order details response', jsonRes);
+      this.orderedDetails = jsonRes?.result?.message;
       if (jsonRes.result.message.order.subtotal) {
         this.subTotal = jsonRes.result.message.order.subtotal
       }
@@ -86,6 +88,13 @@ export default {
     } catch (error) {
       console.log(error);
     }
+    console.log('orderedDetails', this.orderedDetails);
+    this.$store.commit('google-gtag/SET_SUCCESS_PURCHASE', {
+      orderId: this.$route?.params?.orderId,
+      products: this.orderedDetails.order.products,
+      subTotal: this.subTotal
+    })
+
     this.$gtm.trackEvent({
       event: 'conversion',
       'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
@@ -154,7 +163,6 @@ export default {
               'coupon': ''
             },
             'products': this.$store.state.cart.cartItems.map(product => getProduct(product))
-
           }
         }
       });
@@ -207,7 +215,7 @@ export default {
     platformTotal (n, o) {
       console.log('dataLoaded', this.dataLoaded)
       if (this.dataLoaded) {
-        this.gtmTrackEvent(n);
+        // this.gtmTrackEvent(n);
         this.dataLoaded = false;
       }
     }
