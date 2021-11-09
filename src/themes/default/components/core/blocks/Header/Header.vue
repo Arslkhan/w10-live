@@ -69,7 +69,7 @@
             <div class="spacer relative inline-flex" />
             <a
               class="inline-flex weight-500 relative no-underline"
-              href="https://costacoffee.w10.world/"
+              href="https://costacoffee.w10.world/our-range.html"
             >
               Costa Coffee Range
             </a>
