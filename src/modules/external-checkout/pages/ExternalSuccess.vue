@@ -215,7 +215,7 @@ export default {
     platformTotal (n, o) {
       console.log('dataLoaded', this.dataLoaded)
       if (this.dataLoaded) {
-        // this.gtmTrackEvent(n);
+        this.gtmTrackEvent(n);
         this.dataLoaded = false;
       }
     }
