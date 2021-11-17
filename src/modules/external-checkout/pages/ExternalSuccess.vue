@@ -148,7 +148,7 @@ export default {
       return this.$store.state.cart.cartItems.length
     },
     gtmTrackEvent (cart) {
-      console.log('gtmTrackEvent', this.$store.state.cart.cartItems)
+      console.log('gtmTrackEvent', this.$store.state.cart.cartItems, cart && cart.base_grand_total)
       this.$gtm.trackEvent({
         event: 'online.purchase',
         'ecommerce': {
