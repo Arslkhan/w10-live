@@ -257,7 +257,7 @@ import { doPlatformPricesSync } from "@vue-storefront/core/modules/catalog/helpe
 import { filterChangedProduct } from "@vue-storefront/core/modules/catalog/events";
 import AboutProduct from "theme/components/theme/blocks/Home/AboutProduct";
 import VideoPlayer from "theme/components/theme/blocks/Home/VideoPlayer2";
-import fbqViewContent from "src/modules/vsf-facebook-pixel/components/ViewContent";
+import fbqViewContent from "src/modules/facebook-pixel/components/ViewContent";
 
 export default {
   name: "ProductPage",
