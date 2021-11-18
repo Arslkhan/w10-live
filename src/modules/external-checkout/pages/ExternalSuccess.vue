@@ -172,7 +172,7 @@ export default {
     },
     gtmTrackEvent(cart) {
       console.log(
-        "gtmTrackEvent",
+        "gtmTrackEvent purchase",
         this.$store.state.cart.cartItems,
         cart && cart.base_grand_total,
         this.$store
