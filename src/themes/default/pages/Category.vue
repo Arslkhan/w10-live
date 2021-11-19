@@ -116,6 +116,9 @@ export default {
       return this.getCategoryProductsTotal === 0
     }
   },
+  mounted () {
+    console.log('category mounted called')
+  },
   watch: {
     getCategoryProducts (to, from) {
       if (to && Array.isArray(to) && to.length > 0 && to !== from) {

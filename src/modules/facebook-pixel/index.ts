@@ -52,7 +52,7 @@ export const FacebookPixel: StorefrontModule = function ({ router, store, appCon
         () => {
           fbq("init", appConfig.facebookPixel.id);
           fbq("track", "PageView");
-  
+
           router.afterEach((to: Route, from: Route) => {
             fbq("track", "PageView");
           })
@@ -67,12 +67,13 @@ export const FacebookPixel: StorefrontModule = function ({ router, store, appCon
               fbq("track", "AddToWishlist", prepareProductObject(payload.product));
             }
           })
-        
+
           Vue.prototype.$bus.$on("checkout-after-created", () => {
             fbq('track', 'InitiateCheckout', prepareCheckoutObject(store, false));
           });
 
           Vue.prototype.$bus.$on('order-before-placed', (payload) => {
+            console.log('inside purchase event', store)
             fbq('track', 'Purchase', prepareCheckoutObject(store, true));
           })
         }
