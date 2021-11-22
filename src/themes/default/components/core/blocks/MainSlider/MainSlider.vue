@@ -14,7 +14,7 @@
             <!-- 2  button layout -->
             <div v-if="slide.title" class="container w-100"
                  v-lazy:background-image="getThumbnail(slide.image,0,0,'mageplazabanner')">
-              <router-link :to="localizedRoute(slide.url_banner)">
+              <router-link :to="localizedRoute('/our-range.html')">
                 <div class="row center-xs">
 
                   <div v-if="slide.title" class="col-md-12 h1block">
