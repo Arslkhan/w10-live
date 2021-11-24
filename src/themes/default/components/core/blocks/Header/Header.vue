@@ -297,10 +297,10 @@ export default {
       }
 
       if (email && password) {
-        this.$bus.$emit(
-          "notification-progress-start",
-          i18n.t("Authorization in progress ...")
-        );
+        // this.$bus.$emit(
+        //   "notification-progress-start",
+        //   i18n.t("Authorization in progress ...")
+        // );
         this.$store
           .dispatch("user/login", { username: email, password: password })
           .then((result) => {
