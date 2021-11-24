@@ -1,13 +1,13 @@
 <template>
   <div class="row">
     <div class="center-Content overlay-Left">
-      <a class="website-Link" href="https://w10.world/our-range.html"
+      <a class="website-Link" href="http://dev.w10.world/our-range.html"
         >Visit W10 Drinkware Collection</a
       >
       <img class="w10Logo" src="/assets/W10_Logo_new.png" />
     </div>
     <div class="center-Content overlay-Right">
-      <a class="website-Link" href="http://costacoffee.w10.world/"
+      <a class="website-Link" href="http://costa.w10.world/"
         >Visit Costa Coffee Drinkware</a
       >
       <img class="costaCoffee" src="/assets/costaCoffee.svg" />
