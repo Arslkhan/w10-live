@@ -69,7 +69,7 @@
             <div class="spacer relative inline-flex" />
             <a
               class="inline-flex weight-500 relative no-underline"
-              href="https://costacoffee.w10.world/our-range.html"
+              href="#"
               @click="loginUser()"
             >
               Costa Coffee Range
@@ -284,6 +284,12 @@ export default {
       console.log("Arsl method called");
       if (localStorage.getItem("loggedInEmail")) {
         console.log("loggedInEmail", localStorage.getItem("loggedInEmail"));
+      }
+      if (localStorage.getItem("loggedInPassword")) {
+        console.log(
+          "loggedInPassword",
+          localStorage.getItem("loggedInPassword")
+        );
       }
     },
     gotoAccount() {
