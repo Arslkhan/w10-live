@@ -229,6 +229,7 @@ import MicrocartIcon from "theme/components/core/blocks/Header/MicrocartIcon";
 import SearchIcon from "theme/components/core/blocks/Header/SearchIcon";
 import WishlistIcon from "theme/components/core/blocks/Header/WishlistIcon";
 import TopPromo from "theme/components/theme/blocks/Home/TopPromo";
+import i18n from "@vue-storefront/i18n";
 
 export default {
   name: "Header",
@@ -282,7 +283,7 @@ export default {
   methods: {
     loginUser() {
       console.log("Arsl method called");
-      let email, password
+      let email, password;
       if (localStorage.getItem("loggedInEmail")) {
         console.log("loggedInEmail", localStorage.getItem("loggedInEmail"));
         email = localStorage.getItem("loggedInEmail");
@@ -296,21 +297,27 @@ export default {
       }
 
       if (email && password) {
-        this.$bus.$emit('notification-progress-start', i18n.t('Authorization in progress ...'))
-        this.$store.dispatch('user/login', { username: email, password: password }).then((result) => {
-        this.$bus.$emit('notification-progress-stop', {})
+        this.$bus.$emit(
+          "notification-progress-start",
+          i18n.t("Authorization in progress ...")
+        );
+        this.$store
+          .dispatch("user/login", { username: email, password: password })
+          .then((result) => {
+            this.$bus.$emit("notification-progress-stop", {});
 
-        if (result.code !== 200) {
-          // this.onFailure(result)
-          console.log("Failed Arsl");
-        } else {
-          console.log("Success Arsl");
-          // this.onSuccess()
-          // this.close()
-        }
-      }).catch(err => {
-        this.$bus.$emit('notification-progress-stop')
-      })
+            if (result.code !== 200) {
+              // this.onFailure(result)
+              console.log("Failed Arsl");
+            } else {
+              console.log("Success Arsl");
+              // this.onSuccess()
+              // this.close()
+            }
+          })
+          .catch((err) => {
+            this.$bus.$emit("notification-progress-stop");
+          });
       }
     },
     gotoAccount() {
