@@ -294,9 +294,12 @@ export default {
           localStorage.getItem('loggedInPassword')
         );
         password = localStorage.getItem('loggedInPassword');
+      }``
+      if (email) {
+        window.location.href = 'http://costa.w10.world/our-range.html?m=' + email
+      } else {
+        window.location.href = 'http://costa.w10.world/our-range.html'
       }
-
-      window.location.href = 'http://costa.w10.world/our-range.html?m=' + email
     },
     gotoAccount() {
       this.$bus.$emit("modal-toggle", "modal-signup");
