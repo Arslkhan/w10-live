@@ -69,7 +69,6 @@
             <div class="spacer relative inline-flex" />
             <a
               class="inline-flex weight-500 relative no-underline"
-              href="http://costa.w10.world/our-range.html"
               @click="loginUser()"
             >
               Costa Coffee Range
@@ -258,11 +257,11 @@ export default {
       isOpenLogin: (state) => state.ui.signUp,
       currentUser: (state) => state.user.current,
     }),
-    isThankYouPage() {
+    isThankYouPage () {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
         : false;
-    },
+    }
   },
   beforeMount() {
     window.addEventListener(
@@ -281,44 +280,23 @@ export default {
     }, 250);
   },
   methods: {
-    loginUser() {
-      console.log("Arsl method called");
+    loginUser () {
+      // http://costa.w10.world/our-range.html
+      console.log('Arsl method called');
       let email, password;
-      if (localStorage.getItem("loggedInEmail")) {
-        console.log("loggedInEmail", localStorage.getItem("loggedInEmail"));
-        email = localStorage.getItem("loggedInEmail");
+      if (localStorage.getItem('loggedInEmail')) {
+        console.log('loggedInEmail', localStorage.getItem('loggedInEmail'));
+        email = btoa(localStorage.getItem('loggedInEmail'));
       }
-      if (localStorage.getItem("loggedInPassword")) {
+      if (localStorage.getItem('loggedInPassword')) {
         console.log(
-          "loggedInPassword",
-          localStorage.getItem("loggedInPassword")
+          'loggedInPassword',
+          localStorage.getItem('loggedInPassword')
         );
-        password = localStorage.getItem("loggedInPassword");
+        password = localStorage.getItem('loggedInPassword');
       }
 
-      if (email && password) {
-        // this.$bus.$emit(
-        //   "notification-progress-start",
-        //   i18n.t("Authorization in progress ...")
-        // );
-        this.$store
-          .dispatch("user/login", { username: email, password: password })
-          .then((result) => {
-            this.$bus.$emit("notification-progress-stop", {});
-
-            if (result.code !== 200) {
-              // this.onFailure(result)
-              console.log("Failed Arsl");
-            } else {
-              console.log("Success Arsl");
-              // this.onSuccess()
-              // this.close()
-            }
-          })
-          .catch((err) => {
-            this.$bus.$emit("notification-progress-stop");
-          });
-      }
+      window.location.href = 'http://costa.w10.world/our-range.html?m=' + email
     },
     gotoAccount() {
       this.$bus.$emit("modal-toggle", "modal-signup");
