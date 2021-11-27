@@ -257,11 +257,11 @@ export default {
       isOpenLogin: (state) => state.ui.signUp,
       currentUser: (state) => state.user.current,
     }),
-    isThankYouPage () {
+    isThankYouPage() {
       return this.$store.state.checkout.isThankYouPage
         ? this.$store.state.checkout.isThankYouPage
         : false;
-    }
+    },
   },
   beforeMount() {
     window.addEventListener(
@@ -280,25 +280,26 @@ export default {
     }, 250);
   },
   methods: {
-    loginUser () {
+    loginUser() {
       // http://costa.w10.world/our-range.html
-      console.log('Arsl method called');
+      console.log("Arsl method called");
       let email, password;
-      if (localStorage.getItem('loggedInEmail')) {
-        console.log('loggedInEmail', localStorage.getItem('loggedInEmail'));
-        email = btoa(localStorage.getItem('loggedInEmail'));
+      if (localStorage.getItem("loggedInEmail")) {
+        console.log("loggedInEmail", localStorage.getItem("loggedInEmail"));
+        email = btoa(localStorage.getItem("loggedInEmail"));
       }
-      if (localStorage.getItem('loggedInPassword')) {
+      if (localStorage.getItem("loggedInPassword")) {
         console.log(
-          'loggedInPassword',
-          localStorage.getItem('loggedInPassword')
+          "loggedInPassword",
+          localStorage.getItem("loggedInPassword")
         );
-        password = localStorage.getItem('loggedInPassword');
-      }``
+        password = localStorage.getItem("loggedInPassword");
+      }
       if (email) {
-        window.location.href = 'http://costa.w10.world/our-range.html?m=' + email
+        window.location.href =
+          "http://costa.w10.world/our-range.html?m=" + email;
       } else {
-        window.location.href = 'http://costa.w10.world/our-range.html'
+        window.location.href = "http://costa.w10.world/our-range.html";
       }
     },
     gotoAccount() {

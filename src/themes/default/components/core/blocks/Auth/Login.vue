@@ -114,8 +114,7 @@ export default {
         return;
       }
       localStorage.setItem("loggedInEmail", this.email);
-      localStorage.setItem("loggedInPassword", this.password);
-      console.log("These data are saved", this.email, this.password);
+      console.log("These data are saved", this.email);
       this.callLogin();
     },
     remindPassword() {
