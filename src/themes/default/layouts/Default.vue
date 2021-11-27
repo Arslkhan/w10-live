@@ -127,19 +127,19 @@ export default {
   },
   mounted() {
     console.log("forForgetPasswrod", this.$route.query.id === "forget");
-    if (this.$route.query.id === "forget") {
-      console.log(
-        "forForgetPasswrod inside",
-        this.$route.query && this.$route.query.id === "forget"
-      );
-      this.$bus.$emit("modal-show", "modal-signup");
-      this.callForgotPassword();
-      this.$store.commit("ui/setAuthElem", "forgot-pass");
-      console.log(
-        "forForgetPasswrod last",
-        this.$route.query && this.$route.query.id === "forget"
-      );
-    }
+    // if (this.$route.query.id === "forget") {
+    //   console.log(
+    //     "forForgetPasswrod inside",
+    //     this.$route.query && this.$route.query.id === "forget"
+    //   );
+    //   this.$bus.$emit("modal-show", "modal-signup");
+    //   this.callForgotPassword();
+    //   this.$store.commit("ui/setAuthElem", "forgot-pass");
+    //   console.log(
+    //     "forForgetPasswrod last",
+    //     this.$route.query && this.$route.query.id === "forget"
+    //   );
+    // }
   },
   beforeMount() {
     // Progress bar on top of the page
