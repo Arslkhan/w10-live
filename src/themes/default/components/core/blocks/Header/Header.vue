@@ -281,21 +281,12 @@ export default {
   },
   methods: {
     loginUser() {
-      // http://costa.w10.world/our-range.html
-      console.log("Arsl method called");
-      let email, password;
+      let email;
       if (localStorage.getItem("loggedInEmail")) {
         console.log("loggedInEmail", localStorage.getItem("loggedInEmail"));
         email = btoa(localStorage.getItem("loggedInEmail"));
       }
-      if (localStorage.getItem("loggedInPassword")) {
-        console.log(
-          "loggedInPassword",
-          localStorage.getItem("loggedInPassword")
-        );
-        password = localStorage.getItem("loggedInPassword");
-      }
-      if (email) {
+      if (email && this.currentUser) {
         window.location.href =
           "http://costa.w10.world/our-range.html?m=" + email;
       } else {
