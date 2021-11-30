@@ -102,7 +102,7 @@ export default {
       'currency': 'GBP',
       'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
     });
-    // this.gTagConversion()
+    this.gTagConversion()
   },
   // beforeMount () {
   //   this.$bus.$on('application-after-loaded', (payload) => {
@@ -178,7 +178,7 @@ export default {
       fbq('track', 'Purchase', prepareCheckoutObject(this.$store, true));
       this.clearTheCart();
     },
-    gTagConversion (cart) {
+    gTagConversion () {
       console.log('lastOrderConfirmation', this.lastOrderConfirmation);
       console.log('gTagConversionCalled', this.$store.state.cart.cartItems.length);
       if (
@@ -202,7 +202,7 @@ export default {
       gtagScript.innerHTML =
         'gtag(\'event\', \'conversion\', {\n' +
         '      \'send_to\': \'AW-612207016/P1oMCPCl0-sBEKiT9qMC\',\n' +
-        '      \'value\': ' + 0 + ',\n' +
+        '      \'value\': ' + this.totals + ',\n' +
         '      \'currency\': \'GBP\',\n' +
         '      \'transaction_id\': ' +
         transactionId +
