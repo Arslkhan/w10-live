@@ -102,7 +102,6 @@ export default {
       'currency': 'GBP',
       'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
     });
-    this.gTagConversion()
   },
   // beforeMount () {
   //   this.$bus.$on('application-after-loaded', (payload) => {
@@ -166,7 +165,7 @@ export default {
           }
         }
       });
-
+      this.gTagConversion()
       this.$gtm.trackEvent({
         event: 'conversion',
         'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
