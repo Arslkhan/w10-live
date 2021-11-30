@@ -165,7 +165,7 @@ export default {
           }
         }
       });
-      this.gTagConversion()
+      // this.gTagConversion()
       this.$gtm.trackEvent({
         event: 'conversion',
         'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
