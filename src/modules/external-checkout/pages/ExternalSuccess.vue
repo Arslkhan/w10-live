@@ -169,7 +169,7 @@ export default {
       this.$gtm.trackEvent({
         event: 'conversion',
         'send_to': 'AW-612207016/P1oMCPCl0-sBEKiT9qMC',
-        'value': this.subTotal,
+        'value': this.subTotal || cart.base_grand_total,
         'currency': 'GBP',
         'transaction_id': this.$route.params.orderId ? this.$route.params.orderId : ''
       });
